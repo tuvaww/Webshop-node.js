@@ -15,11 +15,16 @@
       </section>
 
       <section class="logLinks">
-        <a href="/register">SIGNUP</a>
-        <a href="/login">LOGIN</a>
-        <form action="/logout" method="post">
-          <button type="submit">LOGOUT</button>
-        </form>
+        {{#if loggedInUser}}
+
+          <form action="/logout" method="post">
+            <button type="submit">LOGOUT</button>
+          </form>
+        {{else}}
+
+          <a href="/register">SIGNUP</a>
+          <a href="/login">LOGIN</a>
+        {{/if}}
 
       </section>
     </nav>
