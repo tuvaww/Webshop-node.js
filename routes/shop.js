@@ -1,10 +1,25 @@
 const express = require("express");
 const router = express.Router();
-const shopController = require("../controller/shop");
 
-router.get("/", shopController.getHome);
-router.get("/register", shopController.getRegister);
-router.post("/register", shopController.postRegister);
-router.get("/login", shopController.getLogin);
+router.get("/", (req, res) => {
+  res.render("home");
+});
+
+router.get("/register", (req, res) => {
+  res.render("register");
+});
+
+router.post("/register", async (req, res) => {
+  const { username, password, email } = req.body;
+
+  const newUser = new User({ username, password, email });
+
+  await newUser.save();
+  res.redirect("/");
+});
+
+router.get("/login", (req, res) => {
+  res.render("login");
+});
 
 module.exports = router;
