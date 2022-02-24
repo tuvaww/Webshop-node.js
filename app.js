@@ -11,6 +11,7 @@ const MongoDbStore = require("connect-mongodb-session")(session);
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
+const errorRoutes = require("./routes/error");
 
 const UserModel = require("./models/Usermodel");
 
@@ -56,6 +57,7 @@ app.use((req, res, next) => {
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
+app.use(errorRoutes.get404);
 
 mongoose
   .connect(process.env.MONGOOSE)
