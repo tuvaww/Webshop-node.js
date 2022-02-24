@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 70px;
+  background-color: cadetblue;
+}
+
+.directLinks,
+.logLinks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  width: 50%;
+  gap: 20px;
+}
+
+.directLinks {
+  justify-content: flex-start;
+}
+
+.logLinks {
+  justify-content: flex-end;
+}

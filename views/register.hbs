@@ -1,7 +1,24 @@
 <form action="/register" method="post">
-  <input type="text" name="usernae" placeholder="Username:" />
-  <input type="text" name="password" placeholder="Password:" />
-  <input type="text" name="confirmPassword" placeholder="Confirm Password:" />
-  <input type="submit" value="Register" />
+  <label for="username">Enter a username:</label>
+  <br />
+  <input type="text" name="username" placeholder="Username:" />
+  <br />
 
+  <label for="email">Enter email:</label>
+  <br />
+  <input type="text" name="email" placeholder="Email:" />
+  <br />
+  <label for="password">Enter a password:</label>
+  <br />
+  <input type="password" name="password" placeholder="Password:" />
+  <br />
+  <label for="confirmPassword">Confirm password:</label>
+  <br />
+  <input
+    type="password"
+    name="confirmPassword"
+    placeholder="Confirm Password:"
+  />
+  <br />
+  <input type="submit" value="Register" />
 </form>
