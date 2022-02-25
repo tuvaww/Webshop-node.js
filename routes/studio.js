@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-const UserModel = require("../models/Usermodel");
 const ArtworkModel = require("../models/Artworkmodel");
 
 router.get("/", (req, res) => {
@@ -10,19 +9,19 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/:id", async (req, res) => {
+router.get("artwork/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id).lean();
 
   res.render("artworks/artworks-single", artwork);
 });
 
-/* router.get("/products", (req, res) => {
+/* router.get("/artworks", (req, res) => {
   ProductModel.find()
-    .then((products) => {
-      console.log("get products", products);
-      res.render("products", {
+    .then((art) => {
+      console.log("get art", art);
+      res.render("artworks", {
         isLoggedIn: req.session.isLoggedIn,
-        prods: products,
+        arts: art,
       });
     })
     .catch((err) => {

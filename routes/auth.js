@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
         /*         return res.redirect("/register");
          */
       } else if (password !== confirmPassword) {
-        res.render("register", {
+        return res.render("register", {
           comparePasswords: "Passwords do not match",
         });
       } else {
