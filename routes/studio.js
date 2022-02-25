@@ -15,18 +15,12 @@ router.get("artwork/:id", async (req, res) => {
   res.render("artworks/artworks-single", artwork);
 });
 
-/* router.get("/artworks", (req, res) => {
-  ProductModel.find()
-    .then((art) => {
-      console.log("get art", art);
-      res.render("artworks", {
-        isLoggedIn: req.session.isLoggedIn,
-        arts: art,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-}); */
+router.get("/artworks", async (req, res) => {
+  const art = await ArtworkModel.find().lean();
+  res.render("artworks/artworks", {
+    isLoggedIn: req.session.isLoggedIn,
+    arts: art,
+  });
+});
 
 module.exports = router;

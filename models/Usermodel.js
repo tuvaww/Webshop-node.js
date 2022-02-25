@@ -7,6 +7,16 @@ const userSchema = new Schema({
     required: true,
   },
   password: { type: String, required: true },
+  savedFavorite: {
+    items: [
+      {
+        artId: { type: Schema.Types.ObjectId, ref: "Artwork", required: true },
+      },
+    ],
+  },
+  /*  myArt: {
+    myItem: [{}]
+  } */
 
   /* email: { type: String, required: true }, */
 });

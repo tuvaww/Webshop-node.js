@@ -14,37 +14,30 @@ router.get("/register", (req, res) => {
 router.post("/register", async (req, res) => {
   const { username, password, confirmPassword } = req.body;
 
-  UserModel.findOne({ username })
-    .then((userDoc) => {
-      if (userDoc) {
-        return res.render("register", {
-          alreadyInUse: "Username already in use",
-        });
-        /*         return res.redirect("/register");
-         */
-      } else if (password !== confirmPassword) {
-        return res.render("register", {
-          comparePasswords: "Passwords do not match",
-        });
-      } else {
-        return bcrypt
-          .hash(password, 8)
-          .then((hashedPassword) => {
-            const user = new UserModel({
-              username,
-              password: hashedPassword,
-            });
-            return user.save();
-          })
-          .then((result) => {
-            res.redirect("/login");
-          });
-      }
-    })
-
-    .catch((err) => {
-      console.log(err);
+  const userDoc = await UserModel.findOne({ username });
+  if (userDoc) {
+    return res.render("register", {
+      alreadyInUse: "Username already in use",
     });
+  } else if (password !== confirmPassword) {
+    return res.render("register", {
+      comparePasswords: "Passwords do not match",
+    });
+  } else {
+    return bcrypt
+      .hash(password, 8)
+      .then(async (hashedPassword) => {
+        const user = new UserModel({
+          username,
+          password: hashedPassword,
+        });
+        await user.save();
+        res.redirect("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 });
 
 router.get("/login", (req, res) => {
@@ -53,39 +46,26 @@ router.get("/login", (req, res) => {
   });
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-
-  UserModel.findOne({ username })
-    .then((user) => {
-      if (!user) {
-        /*         return res.redirect("/login");
-         */ return res.render("login", {
-          userNotFound: "User not found!",
-        });
-      }
-
-      bcrypt
-        .compare(password, user.password)
-        .then((doMatch) => {
-          if (doMatch) {
-            req.session.isLoggedIn = true;
-            req.session.user = user;
-            return req.session.save((err) => {
-              console.log(err);
-              return res.redirect("/");
-            });
-          }
-          res.render("login", {
-            wrongData: "Wrong entered data",
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.redirect("/login");
-        });
-    })
-    .catch((err) => console.log(err));
+  const user = await UserModel.findOne({ username });
+  if (!user) {
+    return res.render("login", {
+      userNotFound: "User not found!",
+    });
+  }
+  const compares = await bcrypt.compare(password, user.password);
+  if (compares) {
+    req.session.isLoggedIn = true;
+    req.session.user = user;
+    return req.session.save((err) => {
+      console.log(err);
+      res.redirect("/");
+    });
+  }
+  res.render("login", {
+    wrongData: "Wrong entered data",
+  });
 });
 
 router.post("/logout", (req, res) => {
