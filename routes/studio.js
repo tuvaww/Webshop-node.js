@@ -10,6 +10,12 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/:id", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id).lean();
+
+  res.render("artworks/artworks-single", artwork);
+});
+
 /* router.get("/products", (req, res) => {
   ProductModel.find()
     .then((products) => {
