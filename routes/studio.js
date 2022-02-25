@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const UserModel = require("../models/Usermodel");
-const ProductModel = require("../models/Productmodel");
+const ArtworkModel = require("../models/Artworkmodel");
 
 router.get("/", (req, res) => {
   res.render("home", {
