@@ -12,6 +12,7 @@ const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const studioRoutes = require("./routes/studio");
 const errorRoutes = require("./routes/error");
+const crudRoutes = require("./routes/crud");
 
 const UserModel = require("./models/Usermodel");
 
@@ -57,6 +58,7 @@ app.use((req, res, next) => {
 app.use("/admin", adminRoutes);
 app.use(studioRoutes);
 app.use(authRoutes);
+app.use(crudRoutes);
 app.use(errorRoutes.get404);
 
 mongoose
