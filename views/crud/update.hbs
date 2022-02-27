@@ -1,0 +1,13 @@
+<h2>Edit your post</h2>
+
+<p>Current name: {{name}}</p>
+<img src="{{imgUrl}}" alt="Posted image" />
+<p>Current description: {{description}}</p>
+
+<form action="/artworks/{{_id}}/edit" method="post">
+  <input type="text" name="name" value="{{name}}" /><br />
+  <input type="url" name="imgUrl" value="{{imgUrl}}" /><br />
+  <input type="text" name="description" value="{{description}}" />
+  <br />
+  <input type="submit" value="Post" />
+</form>
