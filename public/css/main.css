@@ -1,30 +1,137 @@
 * {
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.navContainer {
+header {
   display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 70px;
-  background-color: cadetblue;
+  justify-content: space-between;
+  width: 100%;
+  height: 125px;
 }
 
-.directLinks,
-.logLinks {
+#logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 5%;
+}
+
+#logo img {
+  width: 108px;
+  height: 65px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+.navLinks {
+  position: relative;
+  right: 10%;
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  border: 1px solid black;
+  padding: 1em;
+}
+
+.navLinks li a {
+  text-decoration: none;
+  color: black;
+  padding: 1em;
+}
+
+.navLinks li a:hover {
+  text-decoration: none;
+  color: palevioletred;
+  font-style: italic;
+}
+
+/* LANDING PAGE */
+
+#homeWrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#homeWrapper:nth-child(3) {
+  justify-content: flex-end;
+}
+
+section {
+  width: 25%;
+  height: 500px;
+  background-color: midnightblue;
+}
+
+section h2 {
+  width: 90%;
+  color: white;
+  font-style: italic;
+  padding: 1em;
+}
+
+#featuredSection {
+  width: 75%;
+  height: 500px;
+  background-color: white;
+}
+
+#featuredArtList {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px;
-  width: 50%;
-  gap: 20px;
+  justify-content: space-around;
+  list-style: none;
+  height: 100%;
+  padding: 0;
 }
 
-.directLinks {
-  justify-content: flex-start;
+#featuredArtList li {
+  padding-top: 79.8%;
+  position: relative;
+  background-image: url(../images/gold-frame.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 25%;
+  height: 235px;
 }
 
-.logLinks {
-  justify-content: flex-end;
+#featuredArtList li a {
+  position: absolute;
+  top: 35.9%;
+  left: 17.4%;
+  height: 27.5%;
+  width: 66.1%;
+  transform: rotate(-0.1deg);
+  background-color: red;
+}
+
+#featuredArtList li a img {
+  width: 100%;
+  height: 100%;
+}
+
+#feedLink {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: palevioletred;
+}
+
+#feedLink a {
+  font-size: 15pt;
+  font-weight: bold;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+  font-style: italic;
+  text-align: center;
+  color: white;
 }

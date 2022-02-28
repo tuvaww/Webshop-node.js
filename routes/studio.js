@@ -9,6 +9,12 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/landing-page", async (req, res) => {
+  const artwork = await ArtworkModel.findById("621d48441b258c5ff8094b9c");
+
+  res.render("landing-page", artwork);
+});
+
 router.get("artwork/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id).lean();
 

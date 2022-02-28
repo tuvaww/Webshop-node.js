@@ -3,33 +3,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webshop node | Adam &amp; Tuva-Li &amp; Emma</title>
+    <title>Digital Art Gallery | Adam &amp; Tuva-Li &amp; Emma</title>
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
-    <nav class="navContainer">
-      <section class="directLinks">
-        <a href="/">HOME</a>
-        <a href="/artworks">ARTWORKS</a>
-        <a href="/post">POST ART</a>
+    <header class="navContainer">
+      <a id="logo" href="/">
+        <img src="./images/art-gallery-logo.jpg" alt="Logo" />
+      </a>
 
-      </section>
-
-      <section class="logLinks">
-        {{#if loggedInUser}}
-
-          <form action="/logout" method="post">
-            <button type="submit">LOGOUT</button>
-          </form>
-        {{else}}
-
-          <a href="/register">SIGNUP</a>
-          <a href="/login">LOGIN</a>
-        {{/if}}
-
-      </section>
-    </nav>
+      <nav>
+        <ul class="navLinks">
+          <li><a href="/artworks">ART GALLERY</a></li>
+          {{#if loggedInUser}}
+            <li><a href="/post">POST ART</a></li>
+            <form action="/logout" method="post">
+              <button type="submit">LOGOUT</button>
+            </form>
+          {{else}}
+            <li><a href="/register">CREATE ACCOUNT</a></li>
+            <li><a href="/login">SIGN IN</a></li>
+          {{/if}}
+        </ul>
+      </nav>
+    </header>
 
     {{{body}}}
+
   </body>
 </html>
