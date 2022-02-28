@@ -1,10 +1,11 @@
 const express = require("express");
-const { ObjectId } = require("mongodb");
 const ArtworkModel = require("../models/Artworkmodel");
+const utils = require("../utils");
+const middlewares = require("../middleware/is-auth");
 const router = express.Router();
 
 // CREATE - POST ARTWORK
-router.get("/post", (req, res) => {
+router.get("/post", middlewares.authUserPages, (req, res) => {
   res.render("crud/create");
 });
 
@@ -18,8 +19,12 @@ router.post("/post", async (req, res) => {
     userId: req.session.user._id,
   });
 
-  await newArtwork.save();
-  res.redirect("/post");
+  if (utils.validateArtwork(newArtwork)) {
+    await newArtwork.save();
+    res.redirect("/");
+  } else {
+    res.render("crud/create", { error: "Something went wrong" });
+  }
 });
 
 // UPDATE - EDIT ARTWORK
