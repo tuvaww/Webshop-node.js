@@ -3,16 +3,14 @@ const router = express.Router();
 
 const ArtworkModel = require("../models/Artworkmodel");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+  const artworks = await ArtworkModel.find().limit(3).lean();
+  console.log(artworks);
+
   res.render("home", {
+    art: artworks,
     loggedInUser: req.session.isLoggedIn,
   });
-});
-
-router.get("/landing-page", async (req, res) => {
-  const artwork = await ArtworkModel.findById("621d48441b258c5ff8094b9c");
-
-  res.render("landing-page", artwork);
 });
 
 router.get("artwork/:id", async (req, res) => {

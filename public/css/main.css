@@ -25,6 +25,7 @@ header {
 }
 
 nav {
+  z-index: 1;
   display: flex;
   align-items: center;
 }
@@ -45,7 +46,15 @@ nav {
   padding: 1em;
 }
 
-.navLinks li a:hover {
+#logoutButton {
+  border: 0;
+  background-color: white;
+  font-size: 12pt;
+  padding: 0 1em;
+}
+
+.navLinks li a:hover,
+#logoutButton:hover {
   text-decoration: none;
   color: palevioletred;
   font-style: italic;
@@ -58,21 +67,23 @@ nav {
   flex-wrap: wrap;
 }
 
-#homeWrapper:nth-child(3) {
-  justify-content: flex-end;
-}
-
-section {
+#introSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 25%;
   height: 500px;
   background-color: midnightblue;
 }
 
-section h2 {
-  width: 90%;
-  color: white;
+#introSection h2 {
   font-style: italic;
-  padding: 1em;
+}
+
+#introSection h2,
+p {
+  color: white;
+  padding: 1.2em;
 }
 
 #featuredSection {
@@ -109,7 +120,6 @@ section h2 {
   height: 27.5%;
   width: 66.1%;
   transform: rotate(-0.1deg);
-  background-color: red;
 }
 
 #featuredArtList li a img {

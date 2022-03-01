@@ -17,12 +17,12 @@
           <li><a href="/artworks">ART GALLERY</a></li>
           {{#if loggedInUser}}
             <li><a href="/post">POST ART</a></li>
-            <form action="/logout" method="post">
-              <button type="submit">LOGOUT</button>
+            <form action="/logout" method="post" id="logoutForm">
+              <button type="submit" id="logoutButton">LOGOUT</button>
             </form>
           {{else}}
-            <li><a href="/register">CREATE ACCOUNT</a></li>
-            <li><a href="/login">SIGN IN</a></li>
+            <li><a href="/register">REGISTER ACCOUNT</a></li>
+            <li><a href="/login">LOGIN</a></li>
           {{/if}}
         </ul>
       </nav>
