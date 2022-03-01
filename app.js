@@ -13,7 +13,7 @@ const adminRoutes = require("./routes/admin");
 const studioRoutes = require("./routes/studio");
 const errorRoutes = require("./routes/error");
 const crudRoutes = require("./routes/crud");
-
+const fileUpload = require("express-fileupload");
 const UserModel = require("./models/Usermodel");
 
 const store = new MongoDbStore({
@@ -31,6 +31,7 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.use(express.static("public"));
+app.use(fileUpload());
 
 app.use(express.urlencoded({ extended: true }));
 

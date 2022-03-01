@@ -2,6 +2,7 @@ const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const utils = require("../utils");
 const middlewares = require("../middleware/is-auth");
+const fileUpload = require("express-fileupload");
 const router = express.Router();
 
 // CREATE - POST ARTWORK
@@ -45,6 +46,21 @@ router.post("/artworks/:id/edit", async (req, res) => {
   });
 
   res.redirect("/");
+});
+
+//READ :ID - SINGEL ART
+router.get("artwork/:id", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id);
+
+  res.render("artworks/artworks-single", artwork);
+});
+
+router.get("/artworks", async (req, res) => {
+  const art = await ArtworkModel.find().lean();
+  res.render("artworks/artworks", {
+    isLoggedIn: req.session.isLoggedIn,
+    arts: art,
+  });
 });
 
 module.exports = router;
