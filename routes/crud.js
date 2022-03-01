@@ -23,28 +23,29 @@ router.post("/post", async (req, res) => {
 
   if (utils.validateArtwork(newArtwork)) {
     await newArtwork.save();
-    res.redirect("/");
+    res.redirect("artworks");
   } else {
     res.render("crud/create", { error: "Something went wrong" });
   }
+  console.log(newArtwork);
 });
 
 //READ :ID - SINGEL ART
-router.get("artwork/:id", async (req, res) => {
+router.get("artworks/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id).lean();
 
-  res.render("artworks/artworks-single", artwork);
+  res.render("artworks-single", artwork);
 });
 
 // UPDATE - EDIT ARTWORK
 
-router.get("/artwork/:id/edit", async (req, res) => {
+router.get("/artworks/:id/edit", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("crud/update", artwork);
 });
 
-router.post("/artwork/:id/edit", async (req, res) => {
+router.post("/artworks/:id/edit", async (req, res) => {
   const { name, imgUrl, description } = req.body;
 
   await ArtworkModel.findByIdAndUpdate(req.params.id, {
@@ -58,7 +59,7 @@ router.post("/artwork/:id/edit", async (req, res) => {
 
 router.get("/artworks", async (req, res) => {
   const art = await ArtworkModel.find().lean();
-  res.render("artworks/artworks", {
+  res.render("artworks", {
     isLoggedIn: req.session.isLoggedIn,
     arts: art,
   });
