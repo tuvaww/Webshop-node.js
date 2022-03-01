@@ -5,7 +5,6 @@ const ArtworkModel = require("../models/Artworkmodel");
 
 router.get("/", async (req, res) => {
   const artworks = await ArtworkModel.find().limit(3).lean();
-  console.log(artworks);
 
   res.render("home", {
     art: artworks,
