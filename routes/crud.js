@@ -2,7 +2,8 @@ const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const utils = require("../utils");
 const middlewares = require("../middleware/is-auth");
-const fileUpload = require("express-fileupload");
+//const fileUpload = require("express-fileupload");
+//const { getUniqueFilename } = require("./utils.js");
 const router = express.Router();
 
 // CREATE - POST ARTWORK
@@ -28,15 +29,22 @@ router.post("/post", async (req, res) => {
   }
 });
 
+//READ :ID - SINGEL ART
+router.get("artwork/:id", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id).lean();
+
+  res.render("artworks/artworks-single", artwork);
+});
+
 // UPDATE - EDIT ARTWORK
 
-router.get("/artworks/:id/edit", async (req, res) => {
+router.get("/artwork/:id/edit", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("crud/update", artwork);
 });
 
-router.post("/artworks/:id/edit", async (req, res) => {
+router.post("/artwork/:id/edit", async (req, res) => {
   const { name, imgUrl, description } = req.body;
 
   await ArtworkModel.findByIdAndUpdate(req.params.id, {
@@ -46,13 +54,6 @@ router.post("/artworks/:id/edit", async (req, res) => {
   });
 
   res.redirect("/");
-});
-
-//READ :ID - SINGEL ART
-router.get("artwork/:id", async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id);
-
-  res.render("artworks/artworks-single", artwork);
 });
 
 router.get("/artworks", async (req, res) => {
