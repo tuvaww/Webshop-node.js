@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("artwork/:id", async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id).lean();
+  const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("artworks/artworks-single", artwork);
 });
