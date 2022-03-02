@@ -27,15 +27,22 @@ router.post("/post", async (req, res) => {
   }
 });
 
+// READ - SINGLE ARTWORK
+router.get("/artworks-single/:id", async (req, res) => {
+  const artworks = await ArtworkModel.findById(req.params.id).lean();
+
+  res.render("artworks/artworks-single", artworks);
+});
+
 // UPDATE - EDIT ARTWORK
 
-router.get("/artworks/:id/edit", async (req, res) => {
+router.get("/update/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("crud/update", artwork);
 });
 
-router.post("/artworks/:id/edit", async (req, res) => {
+router.post("/update/:id/edit", async (req, res) => {
   const { name, imgUrl, description } = req.body;
 
   await ArtworkModel.findByIdAndUpdate(req.params.id, {
