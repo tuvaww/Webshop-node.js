@@ -16,28 +16,28 @@ router.get(
     // Successful authentication, redirect home.
 
     const alreadyAUser = await UserModel.findOne({ id: req.user.id });
-    console.log("already a user", alreadyAUser);
+    // console.log("already a user", alreadyAUser);
     if (alreadyAUser) {
-      console.log("use finns");
+      // console.log("use finns");
       req.session.isLoggedIn = true;
       req.session.user = alreadyAUser;
       res.redirect("/");
       return req.session.save((err) => {
-        console.log(err);
+        // console.log(err);
       });
     } else {
-      console.log("user finns inte");
+      // console.log("user finns inte");
       const newGitUser = await UserModel.create({
         username: req.user.username,
         password: "noAccess",
         id: req.user.id,
       });
-      console.log("new git user", newGitUser);
+      // console.log("new git user", newGitUser);
       req.session.isLoggedIn = true;
       req.session.user = newGitUser;
       res.redirect("/");
       return req.session.save((err) => {
-        console.log(err);
+        // console.log(err);
       });
     }
   }
@@ -74,7 +74,7 @@ router.post("/register", async (req, res) => {
         res.redirect("/login");
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   }
 });
@@ -102,7 +102,7 @@ router.post("/login", async (req, res) => {
     /* req.session.isLoggedIn = true; */
     req.session.user = user;
     return req.session.save((err) => {
-      console.log(err);
+      // console.log(err);
       res.redirect("/");
     });
   }
@@ -113,7 +113,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
-    console.log(err);
+    // console.log(err);
     res.redirect("/");
   });
 });

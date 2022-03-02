@@ -2,6 +2,7 @@ const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const utils = require("../utils");
 const middlewares = require("../middleware/is-auth");
+const path = require("path");
 const router = express.Router();
 
 // CREATE - POST ARTWORK
@@ -10,17 +11,25 @@ router.get("/post", middlewares.authUserPages, (req, res) => {
 });
 
 router.post("/post", async (req, res) => {
-  const { name, imgUrl, description } = req.body;
+  const image = req.files.imageFile;
+  const filename = utils.getUniqueFilename(image.name);
+  publicPath = path.join(__dirname, "..");
+  const uploadPath = publicPath + "/public/uploads/" + filename;
+
+  await image.mv(uploadPath);
+
+  const { name, description } = req.body;
 
   const newArtwork = new ArtworkModel({
     name,
-    imgUrl,
+    imgUrl: "/uploads/" + filename,
     description,
     userId: req.session.user._id,
   });
 
   if (utils.validateArtwork(newArtwork)) {
-    await newArtwork.save();
+    const result = await newArtwork.save();
+    // res.redirect("/artworks/" + result._id);
     res.redirect("/");
   } else {
     res.render("crud/create", { error: "Something went wrong" });
@@ -28,7 +37,7 @@ router.post("/post", async (req, res) => {
 });
 
 // READ - SINGLE ARTWORK
-router.get("/artwork/:id", async (req, res) => {
+router.get("/artworks/:id", async (req, res) => {
   const artworks = await ArtworkModel.findById(req.params.id).lean();
 
   res.render("artworks/artworks-single", artworks);

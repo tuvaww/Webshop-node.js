@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const passport = require("passport");
+const fileUpload = require("express-fileupload");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
@@ -31,6 +32,7 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.use(express.static("public"));
+app.use(fileUpload());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -60,7 +62,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.user) {
-    console.log(req.user, "hej");
+    // console.log(req.user, "hej");
     res.locals.loggedInUser = req.session.isLoggedIn = true;
   }
   next();

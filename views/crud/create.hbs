@@ -1,8 +1,9 @@
 <h2>Post artwork</h2>
 
-<form action="/post" method="post">
+<form action="/post" method="post" enctype="multipart/form-data">
   <input type="text" name="name" placeholder="Name of the art" /><br />
-  <input type="url" name="imgUrl" placeholder="Link to the art" /><br />
+  {{! <input type="url" name="imgUrl" placeholder="Link to the art" /><br /> }}
+  <input type="file" name="imageFile" /><br />
   <input
     type="text"
     name="description"
