@@ -7,7 +7,10 @@ const userSchema = new Schema({
     required: true,
   },
   password: { type: String, required: true },
-  savedFavorite: {
+  googleToken: { Type: String },
+  id: { type: Number },
+  /*   authId: { type: Schema.Types.ObjectId },
+   */ savedFavorite: {
     items: [
       {
         artId: { type: Schema.Types.ObjectId, ref: "Artwork", required: true },
