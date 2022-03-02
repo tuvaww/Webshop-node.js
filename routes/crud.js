@@ -10,18 +10,24 @@ router.get("/post", middlewares.authUserPages, (req, res) => {
 });
 
 router.post("/post", async (req, res) => {
-  const { name, imgUrl, description } = req.body;
+  const image = req.files.image;
+  const { name, description } = req.body;
+
+  const fileName = utils.getUniqueFileName(image.name);
+  const uploadPath = __dirname + "/public/uploads/" + fileName;
+
+  await image.mv(uploadPath);
 
   const newArtwork = new ArtworkModel({
     name,
-    imgUrl,
+    imgUrl: "/uploads/" + fileName,
     description,
     userId: req.session.user._id,
   });
 
   if (utils.validateArtwork(newArtwork)) {
-    await newArtwork.save();
-    res.redirect("/");
+    const result = await artwork.save();
+    res.redirect("/artworks/" + result._id);
   } else {
     res.render("crud/create", { error: "Something went wrong" });
   }

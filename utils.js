@@ -11,4 +11,12 @@ function validateArtwork(artwork) {
   return valid;
 }
 
-module.exports = { validateArtwork };
+function getUniqueFilename(filename) {
+  const timeStamp = Date.now();
+
+  const extension = fileName.split(".").pop();
+
+  return `${timeStamp}.${extension}`;
+}
+
+module.exports = { validateArtwork, getUniqueFilename };
