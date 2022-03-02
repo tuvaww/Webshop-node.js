@@ -58,6 +58,14 @@ app.use((req, res, next) => {
     .catch((err) => console.log(err));
 });
 
+app.use((req, res, next) => {
+  if (req.user) {
+    console.log(req.user, "hej");
+    res.locals.loggedInUser = req.session.isLoggedIn = true;
+  }
+  next();
+});
+
 app.use("/admin", adminRoutes);
 app.use(studioRoutes);
 app.use(authRoutes);
