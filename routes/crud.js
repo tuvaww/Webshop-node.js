@@ -54,4 +54,14 @@ router.post("/update/:id/edit", async (req, res) => {
   res.redirect("/");
 });
 
+router.get("/delete/:id", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id);
+
+  res.render("artworks/artworks-delete", artwork);
+});
+
+router.post("/delete/:id", async (req, res) => {
+  res.redirect("/");
+});
+
 module.exports = router;
