@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-
+const passport = require("passport");
 const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
@@ -30,7 +30,10 @@ app.engine(
 app.set("view engine", "hbs");
 
 app.use(express.static("public"));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
