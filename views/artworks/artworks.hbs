@@ -1,4 +1,5 @@
 <h2>Artworks</h2>
-{{#each arts}}
-  <img src="{{imgUrl}}" alt="{{name}}" />
+{{#each artworks}}
+  <a href="/artwork/{{_id}}"><img src="{{imgUrl}}" alt="{{name}}" /></a>
+
 {{/each}}

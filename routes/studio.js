@@ -12,17 +12,11 @@ router.get("/", async (req, res) => {
   });
 });
 
-router.get("artworks/:id", async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id);
-
-  res.render("artworks/artworks-single", artwork);
-});
-
 router.get("/artworks", async (req, res) => {
-  const art = await ArtworkModel.find().lean();
+  const artworks = await ArtworkModel.find().lean();
   res.render("artworks/artworks", {
     isLoggedIn: req.session.isLoggedIn,
-    arts: art,
+    artworks: artworks,
   });
 });
 
