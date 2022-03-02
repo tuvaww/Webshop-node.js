@@ -45,7 +45,8 @@ router.get(
 
 router.get("/register", (req, res) => {
   res.render("register", {
-    loggedInUser: false,
+    /*     loggedInUser: false,
+     */
   });
 });
 
@@ -79,9 +80,11 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-  res.render("login", {
+  res.render(
+    "login" /* , {
     loggedInUser: false,
-  });
+  } */
+  );
 });
 
 router.post("/login", async (req, res) => {
@@ -96,7 +99,7 @@ router.post("/login", async (req, res) => {
   }
   const compares = await bcrypt.compare(password, user.password);
   if (compares) {
-    req.session.isLoggedIn = true;
+    /* req.session.isLoggedIn = true; */
     req.session.user = user;
     return req.session.save((err) => {
       console.log(err);
