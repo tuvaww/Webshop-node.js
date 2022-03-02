@@ -14,7 +14,7 @@ function validateArtwork(artwork) {
 function getUniqueFilename(filename) {
   const timeStamp = Date.now();
 
-  const extension = fileName.split(".").pop();
+  const extension = filename.split(".").pop();
 
   return `${timeStamp}.${extension}`;
 }

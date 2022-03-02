@@ -52,6 +52,7 @@ p {
 
 #featuredArtList li a {
   position: absolute;
+  /* overflow: hidden; */
   top: 35.9%;
   left: 17.4%;
   height: 27.5%;
