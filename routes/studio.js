@@ -7,7 +7,6 @@ router.get("/", async (req, res) => {
   const artworks = await ArtworkModel.find().lean();
   res.render("home", {
     loggedInUser: req.session.isLoggedIn,
-    artworks,
   });
 });
 

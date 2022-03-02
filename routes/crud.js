@@ -2,12 +2,19 @@ const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const utils = require("../utils");
 const middlewares = require("../middleware/is-auth");
-//const fileUpload = require("express-fileupload");
-//const { getUniqueFilename } = require("./utils.js");
+
 const router = express.Router();
 
+router.get("/artworks", async (req, res) => {
+  const artworks = await ArtworkModel.find().lean();
+  res.render("artworks", {
+    isLoggedIn: req.session.isLoggedIn,
+    artworks: artworks,
+  });
+});
+
 // CREATE - POST ARTWORK
-router.get("/post", middlewares.authUserPages, (req, res) => {
+router.get("/post", middlewares.authUserPages, async (req, res) => {
   res.render("crud/create");
 });
 
@@ -22,16 +29,17 @@ router.post("/post", async (req, res) => {
   });
 
   if (utils.validateArtwork(newArtwork)) {
-    await newArtwork.save();
-    res.redirect("artworks");
+    //await newArtwork.save();
+    const newArtwork = new ArtworkModel(req.body);
+    const result = await newArtwork.save();
+    res.render("artworks" + result._id);
   } else {
     res.render("crud/create", { error: "Something went wrong" });
   }
-  console.log(newArtwork);
 });
 
 //READ :ID - SINGEL ART
-router.get("artworks/:id", async (req, res) => {
+router.get("artwork/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id).lean();
 
   res.render("artworks-single", artwork);
@@ -39,13 +47,13 @@ router.get("artworks/:id", async (req, res) => {
 
 // UPDATE - EDIT ARTWORK
 
-router.get("/artworks/:id/edit", async (req, res) => {
+router.get("/artwork/:id/edit", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("crud/update", artwork);
 });
 
-router.post("/artworks/:id/edit", async (req, res) => {
+router.post("/artwork/:id/edit", async (req, res) => {
   const { name, imgUrl, description } = req.body;
 
   await ArtworkModel.findByIdAndUpdate(req.params.id, {
@@ -55,14 +63,6 @@ router.post("/artworks/:id/edit", async (req, res) => {
   });
 
   res.redirect("/");
-});
-
-router.get("/artworks", async (req, res) => {
-  const art = await ArtworkModel.find().lean();
-  res.render("artworks", {
-    isLoggedIn: req.session.isLoggedIn,
-    arts: art,
-  });
 });
 
 module.exports = router;
