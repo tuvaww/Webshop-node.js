@@ -3,7 +3,45 @@ const bcrypt = require("bcryptjs");
 const express = require("express");
 const router = express.Router();
 
+const passport = require("passport");
+const githubPassport = require("../oAuth/github");
 const UserModel = require("../models/Usermodel");
+
+router.get("/auth/github", passport.authenticate("github"));
+
+router.get(
+  "/auth/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  async function (req, res) {
+    // Successful authentication, redirect home.
+
+    const alreadyAUser = await UserModel.findOne({ id: req.user.id });
+    console.log("already a user", alreadyAUser);
+    if (alreadyAUser) {
+      console.log("use finns");
+      req.session.isLoggedIn = true;
+      req.session.user = alreadyAUser;
+      res.redirect("/");
+      return req.session.save((err) => {
+        console.log(err);
+      });
+    } else {
+      console.log("user finns inte");
+      const newGitUser = await UserModel.create({
+        username: req.user.username,
+        password: "noAccess",
+        id: req.user.id,
+      });
+      console.log("new git user", newGitUser);
+      req.session.isLoggedIn = true;
+      req.session.user = newGitUser;
+      res.redirect("/");
+      return req.session.save((err) => {
+        console.log(err);
+      });
+    }
+  }
+);
 
 router.get("/register", (req, res) => {
   res.render("register", {
@@ -40,7 +78,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
+router.get("/login", async (req, res) => {
   res.render("login", {
     loggedInUser: false,
   });
@@ -48,7 +86,9 @@ router.get("/login", (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+
   const user = await UserModel.findOne({ username });
+
   if (!user) {
     return res.render("login", {
       userNotFound: "User not found!",
