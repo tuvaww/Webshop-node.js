@@ -28,7 +28,7 @@ router.post("/post", async (req, res) => {
 });
 
 // READ - SINGLE ARTWORK
-router.get("/artworks-single/:id", async (req, res) => {
+router.get("/artwork/:id", async (req, res) => {
   const artworks = await ArtworkModel.findById(req.params.id).lean();
 
   res.render("artworks/artworks-single", artworks);
@@ -51,6 +51,16 @@ router.post("/update/:id/edit", async (req, res) => {
     description,
   });
 
+  res.redirect("/");
+});
+
+router.get("/delete/:id", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id);
+
+  res.render("artworks/artworks-delete", artwork);
+});
+
+router.post("/delete/:id", async (req, res) => {
   res.redirect("/");
 });
 
