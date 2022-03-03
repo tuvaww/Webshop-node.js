@@ -24,13 +24,12 @@ router.post("/post", async (req, res) => {
     name,
     imgUrl: "/uploads/" + filename,
     description,
-    userId: req.session.user._id,
+    user: req.session.user,
   });
 
   if (utils.validateArtwork(newArtwork)) {
     const result = await newArtwork.save();
-    // res.redirect("/artworks/" + result._id);
-    res.redirect("/");
+    res.redirect("/artworks/" + result._id);
   } else {
     res.render("crud/create", { error: "Something went wrong" });
   }
@@ -38,9 +37,11 @@ router.post("/post", async (req, res) => {
 
 // READ - SINGLE ARTWORK
 router.get("/artworks/:id", async (req, res) => {
-  const artworks = await ArtworkModel.findById(req.params.id).lean();
+  const artwork = await ArtworkModel.findById(req.params.id)
+    .populate("user")
+    .lean();
 
-  res.render("artworks/artworks-single", artworks);
+  res.render("artworks/artworks-single", artwork);
 });
 
 // UPDATE - EDIT ARTWORK
