@@ -6,7 +6,7 @@ const artworkSchema = new Schema({
   imgUrl: { type: String, required: true },
   description: { type: String, required: true },
   //produkt som tillhör user med id.., ref är från vilken colection
-  userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  user: { type: Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 module.exports = mongoose.model("Artwork", artworkSchema);
