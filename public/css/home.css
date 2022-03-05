@@ -19,7 +19,7 @@
 }
 
 #introSection h2,
-p {
+#aboutText {
   color: white;
   padding: 1.2em;
 }
@@ -52,17 +52,15 @@ p {
 
 #featuredArtList li a {
   position: absolute;
-  /* overflow: hidden; */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgb(228, 159, 10);
   top: 35.9%;
   left: 17.4%;
   height: 27.5%;
   width: 66.1%;
   transform: rotate(-0.1deg);
-}
-
-#featuredArtList li a img {
-  width: 100%;
-  height: 100%;
 }
 
 #feedLink {
