@@ -1,0 +1,33 @@
+#feedWrapper h2 {
+  text-align: center;
+  padding: 1em;
+  animation-name: colorChange;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes colorChange {
+  from {
+    color: black;
+  }
+  to {
+    color: palevioletred;
+  }
+}
+
+#feedSection {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#feedSection a {
+  width: 25%;
+  padding: 5px;
+}
+
+#feedSection a img {
+  /* height: 250px; */
+  width: 100%;
+}

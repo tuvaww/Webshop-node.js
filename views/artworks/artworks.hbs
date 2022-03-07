@@ -1,5 +1,10 @@
-<h2>Artworks</h2>
-{{#each artworks}}
-  <a href="/artworks/{{_id}}"><img src="{{imgUrl}}" alt="{{name}}" /></a>
-
-{{/each}}
+<div id="feedWrapper">
+  {{! <h2>The Feed</h2> }}
+  <section id="feedSection">
+    {{#each artworks}}
+      <a href="/artworks/{{_id}}">
+        <img src="{{imgUrl}}" alt="{{name}}" />
+      </a>
+    {{/each}}
+  </section>
+</div>
