@@ -8,14 +8,14 @@ router.get("/", async (req, res) => {
 
   res.render("home", {
     art: artworks,
-    loggedInUser: req.session.isLoggedIn,
+    // loggedInUser: req.session.isLoggedIn,
   });
 });
 
 router.get("/artworks", async (req, res) => {
   const artworks = await ArtworkModel.find().lean();
   res.render("artworks/artworks", {
-    isLoggedIn: req.session.isLoggedIn,
+    //  isLoggedIn: req.session.isLoggedIn,
     artworks: artworks,
   });
 });
