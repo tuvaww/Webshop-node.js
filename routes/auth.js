@@ -44,7 +44,7 @@ router.get(
 );
 
 router.get("/register", (req, res) => {
-  res.render("register", {
+  res.render("auth/register", {
     /*     loggedInUser: false,
      */
   });
@@ -81,7 +81,7 @@ router.post("/register", async (req, res) => {
 
 router.get("/login", async (req, res) => {
   res.render(
-    "login" /* , {
+    "auth/login" /* , {
     loggedInUser: false,
   } */
   );
@@ -93,7 +93,7 @@ router.post("/login", async (req, res) => {
   const user = await UserModel.findOne({ username });
 
   if (!user) {
-    return res.render("login", {
+    return res.render("auth/login", {
       userNotFound: "User not found!",
     });
   }
@@ -106,7 +106,7 @@ router.post("/login", async (req, res) => {
       res.redirect("/");
     });
   }
-  res.render("login", {
+  res.render("auth/login", {
     wrongData: "Wrong entered data",
   });
 });

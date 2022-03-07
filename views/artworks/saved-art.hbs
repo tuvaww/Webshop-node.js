@@ -1,0 +1,33 @@
+<h1>art collection</h1>
+
+{{!-- {{#each art}}
+  <h1>k: {{artId.name}}</h1>
+{{/each}}
+<h1>pppp</h1>
+<h2>r</h2> --}}
+
+<main>
+  <div id="homeWrapper">
+
+    <section id="featuredSection">
+      <ul id="featuredArtList">
+        {{#each art}}
+          <h1>{{artId.name}}</h1>
+          <li>
+            <a href="/artworks/{{artId._id}}">
+              <img src="{{artId.imgUrl}}" alt="{{artId.name}}" />
+            </a>
+
+          </li>
+          <form action="/admin/saved-delete-item" method="POST">
+            <input type="hidden" value="{{artId._id}}" name="artId" />
+            <button type="submit">Remove</button>
+          </form>
+        {{/each}}
+      </ul>
+    </section>
+    <div id="feedLink">
+      <a href="/artworks">Browse the feed</a>
+    </div>
+  </div>
+</main>
