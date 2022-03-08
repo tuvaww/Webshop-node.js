@@ -1,20 +1,3 @@
-#feedWrapper h2 {
-  text-align: center;
-  padding: 1em;
-  animation-name: colorChange;
-  animation-duration: 4s;
-  animation-iteration-count: infinite;
-}
-
-@keyframes colorChange {
-  from {
-    color: black;
-  }
-  to {
-    color: palevioletred;
-  }
-}
-
 #feedSection {
   display: flex;
   flex-wrap: wrap;
@@ -23,11 +6,34 @@
 }
 
 #feedSection a {
-  width: 25%;
+  /* width: 25%; */
   padding: 5px;
+  position: relative;
 }
 
 #feedSection a img {
-  /* height: 250px; */
-  width: 100%;
+  height: 250px;
+  /* width: 100%; */
+}
+
+#feedSection form {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.7em;
+}
+
+#feedSection form button {
+  background-color: transparent;
+  border: 0;
+}
+
+#heartIcon {
+  font-size: 25px;
+  color: white;
+  background-color: transparent;
+}
+
+#heartIcon:hover {
+  cursor: pointer;
 }

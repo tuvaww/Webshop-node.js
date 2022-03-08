@@ -1,13 +1,21 @@
-<div id="feedWrapper">
-  <section id="feedSection">
-    {{#each artworks}}
-      <a href="/artworks/{{_id}}">
-        <img src="{{imgUrl}}" alt="{{name}}" />
-      </a>
+<section id="feedSection">
+  {{#each artworks}}
+    <a href="/artworks/{{_id}}">
+      <img src="{{imgUrl}}" alt="{{name}}" />
       <form action="/admin/save" method="post">
-        <button class="btn" type="submit">Add to collection</button>
+        {{! <button class="btn" type="submit">Add to collection</button> }}
+        <button class="btn" type="submit">
+          <i id="heartIcon" class="bi bi-suit-heart"></i>
+        </button>
         <input type="hidden" name="artId" value="{{_id}}" />
       </form>
-    {{/each}}
-  </section>
-</div>
+    </a>
+    {{!-- <form action="/admin/save" method="post">
+        {{! <button class="btn" type="submit">Add to collection</button> }}
+        <button class="btn" type="submit">
+          <i class="bi bi-suit-heart"></i>
+        </button>
+        <input type="hidden" name="artId" value="{{_id}}" />
+      </form> --}}
+  {{/each}}
+</section>
