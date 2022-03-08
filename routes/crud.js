@@ -31,7 +31,7 @@ router.post("/post", async (req, res) => {
     const result = await newArtwork.save();
     res.redirect("/artworks/" + result._id);
   } else {
-    res.render("crud/create", { error: "Something went wrong" });
+    res.render("crud/create", { error: "Please fill in all fields" });
   }
 });
 
