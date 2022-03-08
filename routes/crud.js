@@ -47,12 +47,12 @@ router.get("/artworks/:id", async (req, res) => {
   const postedBy = artwork.user._id.toString();
 
   if (loggedUser === postedBy) {
-    return res.render("artworks/artworks-single", {
+    res.render("artworks/artworks-single", {
       artwork,
       myPosts: true,
     });
   } else {
-    return res.render("artworks/artworks-single", {
+    res.render("artworks/artworks-single", {
       artwork,
       myPosts: false,
     });
@@ -61,23 +61,19 @@ router.get("/artworks/:id", async (req, res) => {
 
 // UPDATE - EDIT ARTWORK
 
-router.get(
-  "/artworks/:id/edit",
-  middlewares.authUserPages,
-  async (req, res) => {
-    const artwork = await ArtworkModel.findById(req.params.id);
+router.get("/artworks/:id/edit", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id);
 
-    const loggedUser = req.user._id.toString();
-    const postedBy = artwork.user._id.toString();
+  const loggedUser = req.user._id.toString();
+  const postedBy = artwork.user._id.toString();
 
-    if (loggedUser === postedBy) {
-      return res.render("artworks/artworks-post-edit", {
-        artwork,
-        myPosts: true,
-      });
-    }
+  if (loggedUser === postedBy) {
+    res.render("artworks/artworks-post-edit", {
+      artwork,
+      myPosts: true,
+    });
   }
-);
+});
 
 router.post("/artworks/:id/edit", async (req, res) => {
   const { name, description } = req.body;
