@@ -41,18 +41,24 @@ router.get("/artworks/:id", async (req, res) => {
     .populate("user")
     .lean();
 
-  const loggedUser = req.user._id.toString();
-  const postedBy = artwork.user._id.toString();
+  if (req.user) {
+    const loggedUser = req.user._id.toString();
+    const postedBy = artwork.user._id.toString();
 
-  if (loggedUser === postedBy) {
-    return res.render("artworks/artworks-single", {
-      artwork,
-      myPosts: true,
-    });
+    if (loggedUser === postedBy) {
+      return res.render("artworks/artworks-single", {
+        artwork,
+        myPosts: true,
+      });
+    } else {
+      return res.render("artworks/artworks-single", {
+        artwork,
+        myPosts: false,
+      });
+    }
   } else {
     return res.render("artworks/artworks-single", {
       artwork,
-      myPosts: false,
     });
   }
 });
