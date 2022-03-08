@@ -1,9 +1,13 @@
-<h2>Artworks</h2>
-{{#each artworks}}
-  <a href="/artworks/{{_id}}"><img src="{{imgUrl}}" alt="{{name}}" /></a>
-
-  <form action="/admin/save" method="post">
-    <button class="btn" type="submit">Add to collection</button>
-    <input type="hidden" name="artId" value="{{_id}}" />
-  </form>
-{{/each}}
+<div id="feedWrapper">
+  <section id="feedSection">
+    {{#each artworks}}
+      <a href="/artworks/{{_id}}">
+        <img src="{{imgUrl}}" alt="{{name}}" />
+      </a>
+      <form action="/admin/save" method="post">
+        <button class="btn" type="submit">Add to collection</button>
+        <input type="hidden" name="artId" value="{{_id}}" />
+      </form>
+    {{/each}}
+  </section>
+</div>
