@@ -9,11 +9,9 @@ router.get("/saved", isAuth.authUserPages, async (req, res) => {
   req.user
     .populate("savedFavorite.items.artId")
     .then((user) => {
-      // console.log("user", user);
       const art = user.savedFavorite.items;
 
-      //console.log(products);
-      res.render("artworks/saved-art", {
+      res.render("artworks/artworks", {
         art: art,
       });
     })
