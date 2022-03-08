@@ -5,9 +5,7 @@
 <p>{{description}}</p>
 <p>Posted by: {{user.username}}</p>
 
-{{#if loggedInUser}}
-  <p><a href="/update/{{_id}}">Edit Art</a></p>
-  <p><a href="/delete/{{_id}}">Delete Art</a></p>
-{{/if}}
+<p><a href="/update/{{_id}}">Edit Art</a></p>
+<p><a href="/delete/{{_id}}">Delete Art</a></p>
 
 <!-- Vid inloggad valmöjlighet att lägga till i collection -->
