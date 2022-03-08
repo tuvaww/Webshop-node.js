@@ -1,11 +1,12 @@
-<h2>Artwork: {{name}}</h2>
-
-<img src="{{imgUrl}}" alt="{{name}}" />
-
-<p>{{description}}</p>
-<p>Posted by: {{user.username}}</p>
-
-<p><a href="/update/{{_id}}">Edit Art</a></p>
-<p><a href="/delete/{{_id}}">Delete Art</a></p>
-<!---ggad visa redigera-->
-<!-- Vid inloggad valmöjlighet att lägga till i collection -->
+<section id="singleSection">
+  <a id="posterLink" href="#">{{user.username}}</a>
+  <img src="{{imgUrl}}" alt="{{name}}" />
+  <div id="artDetails">
+    <h4>{{name}}</h4>
+    <p>{{description}}</p>
+  </div>
+  <p><a href="/update/{{_id}}">Edit Art</a></p>
+  <p><a href="/delete/{{_id}}">Delete Art</a></p>
+  <!----->
+  <!-- Vid inloggad valmöjlighet att lägga till i collection -->
+</section>

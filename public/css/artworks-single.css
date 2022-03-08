@@ -1,0 +1,26 @@
+#singleSection {
+  width: 40%;
+  border: 1px solid black;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#singleSection #posterLink {
+  padding: 1em;
+  color: black;
+}
+
+#singleSection img {
+  padding: 1em;
+  outline: 1px solid black;
+}
+
+#artDetails h4 {
+  font-style: italic;
+}
+
+#artDetails h4,
+p {
+  padding: 0.5em 1em;
+}
