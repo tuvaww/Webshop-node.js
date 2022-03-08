@@ -1,7 +1,8 @@
 const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const utils = require("../utils");
-const middlewares = require("../middleware/is-auth");
+const middlewares = require("../middleware/is-auth.js");
+const middleware = require("../middleware/matchArtId.js");
 const path = require("path");
 const router = express.Router();
 
@@ -37,9 +38,7 @@ router.post("/post", async (req, res) => {
 
 // READ - SINGLE ARTWORK
 router.get("/artworks/:id", async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id)
-    .populate("user")
-    .lean();
+  const artwork = await ArtworkModel.findById(req.params.id).populate("user").lean();
 
   res.render("artworks/artworks-single", artwork);
 });
