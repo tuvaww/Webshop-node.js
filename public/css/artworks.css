@@ -1,0 +1,39 @@
+#feedSection {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#feedSection a {
+  /* width: 25%; */
+  padding: 5px;
+  position: relative;
+}
+
+#feedSection a img {
+  height: 250px;
+  /* width: 100%; */
+}
+
+#feedSection form {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0.7em;
+}
+
+#feedSection form button {
+  background-color: transparent;
+  border: 0;
+}
+
+#heartIcon {
+  font-size: 25px;
+  color: white;
+  background-color: transparent;
+}
+
+#heartIcon:hover {
+  cursor: pointer;
+}
