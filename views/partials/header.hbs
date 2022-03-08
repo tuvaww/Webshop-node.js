@@ -1,10 +1,6 @@
 <header class="navContainer">
   <a id="logo" href="/">
-<<<<<<< HEAD
     <img src="../images/art-gallery-logo.jpg" alt="Logo" />
-=======
-    <img src="/images/art-gallery-logo.jpg" alt="Logo" />
->>>>>>> 1b108f3e006fb0f24b2547dea60dcf580bab71aa
   </a>
 
   <nav>
@@ -13,7 +9,7 @@
       {{#if loggedInUser}}
         <li><a href="/post">POST ART</a></li>
         <li><a href="/admin/saved">WISHLIST</a></li>
-
+        <li><a href="/profile">MY PROFILE</a></li>
         <form action="/logout" method="post">
           <button type="submit" id="logoutButton">LOGOUT</button>
         </form>

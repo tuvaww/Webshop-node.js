@@ -37,9 +37,7 @@ router.post("/post", async (req, res) => {
 
 // READ - SINGLE ARTWORK
 router.get("/artworks/:id", async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id)
-    .populate("user")
-    .lean();
+  const artwork = await ArtworkModel.findById(req.params.id).populate("user").lean();
 
   const loggedUser = req.user._id.toString();
   const postedBy = artwork.user._id.toString();
