@@ -41,12 +41,25 @@ router.get("/artworks/:id", async (req, res) => {
     .populate("user")
     .lean();
 
-  res.render("artworks/artworks-single", artwork);
+  const loggedUser = req.user._id.toString();
+  const postedBy = artwork.user._id.toString();
+
+  if (loggedUser === postedBy) {
+    return res.render("artworks/artworks-single", {
+      artwork,
+      myPosts: true,
+    });
+  } else {
+    return res.render("artworks/artworks-single", {
+      artwork,
+      myPosts: false,
+    });
+  }
 });
 
 // UPDATE - EDIT ARTWORK
 
-router.get("/update/:id", async (req, res) => {
+router.get("/update/:id", middlewares.authUserPages, async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("crud/update", artwork);
@@ -64,7 +77,7 @@ router.post("/update/:id/edit", async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/delete/:id", async (req, res) => {
+router.get("/delete/:id", middlewares.authUserPages, async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
   res.render("artworks/artworks-delete", artwork);

@@ -1,11 +1,14 @@
-<h2>Artwork: {{name}}</h2>
+<h2>Artwork: {{artwork.name}}</h2>
 
-<img src="{{imgUrl}}" alt="{{name}}" />
+<img src="{{artwork.imgUrl}}" alt="{{artwork.name}}" />
 
-<p>{{description}}</p>
-<p>Posted by: {{user.username}}</p>
+<p>{{artwork.description}}</p>
+<p>Posted by: {{artwork.user.username}}</p>
 
-<p><a href="/update/{{_id}}">Edit Art</a></p>
-<p><a href="/delete/{{_id}}">Delete Art</a></p>
-<!---ggad visa redigera-->
+{{#if myPosts}}
+  <p><a href="/update/{{artwork._id}}">Edit Art</a></p>
+  <p><a href="/delete/{{artwork._id}}">Delete Art</a></p>
+{{/if}}
+
+<!---sa redigera-->
 <!-- Vid inloggad valmöjlighet att lägga till i collection -->
