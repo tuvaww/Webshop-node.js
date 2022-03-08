@@ -1,12 +1,14 @@
 <section id="singleSection">
-  <a id="posterLink" href="#">{{artwork.user.username}}</a>
+  <a href="#">{{artwork.user.username}}</a>
   <img src="{{artwork.imgUrl}}" alt="{{artwork.name}}" />
   <div id="artDetails">
     <h4>{{artwork.name}}</h4>
     <p>{{artwork.description}}</p>
   </div>
   {{#if myPosts}}
-    <p><a href="/update/{{artwork._id}}">Edit Art</a></p>
-    <p><a href="/delete/{{artwork._id}}">Delete Art</a></p>
+    <div id="posterLinks">
+      <a href="/update/{{artwork._id}}">Edit</a>
+      <a href="/delete/{{artwork._id}}">Delete</a>
+    </div>
   {{/if}}
 </section>
