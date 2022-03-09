@@ -8,7 +8,7 @@
   <h2>Art</h2>
   {{#each artworks}}
     <p>{{name}}</p>
-    <a href="/artworks/{{_id}}"> {{imgUrl}}</a>
+    <a href="/artworks/{{_id}}"> <img src="{{imgUrl}}" /> </a>
     <p>{{description}}</p>
   {{/each}}
 {{/if}}

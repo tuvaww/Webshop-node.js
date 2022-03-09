@@ -6,7 +6,7 @@ const middlewares = require("../middleware/is-auth");
 router.get("/profile", middlewares.authUserPages, async (req, res) => {
   const user = req.user.username;
   const id = req.user._id;
-  const art = await ArtworkModel.find({ id });
+  const art = await ArtworkModel.find({ id }).lean();
 
   res.render("auth/profile", { artworks: art, user, id });
 });
