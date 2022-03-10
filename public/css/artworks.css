@@ -6,14 +6,12 @@
 }
 
 #feedSection a {
-  /* width: 25%; */
   padding: 5px;
   position: relative;
 }
 
 #feedSection a img {
   height: 250px;
-  /* width: 100%; */
 }
 
 #feedSection form {

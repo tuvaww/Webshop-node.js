@@ -28,7 +28,7 @@ router.post("/save", (req, res) => {
       return req.user.addToCollection(art);
     })
     .then((result) => {
-      res.redirect("/admin/saved");
+      res.redirect("back");
     })
     .catch((err) => console.log(err));
 });
@@ -38,7 +38,7 @@ router.post("/saved-delete-item", (req, res) => {
   req.user
     .removeFromSaved(artId)
     .then((result) => {
-      res.redirect("/admin/saved");
+      res.redirect("back");
     })
     .catch((err) => console.log(err));
 });

@@ -7,9 +7,8 @@
     <ul class="navLinks">
       <li><a href="/artworks">ART GALLERY</a></li>
       {{#if loggedInUser}}
-        <li><a href="/post">POST ART</a></li>
         <li><a href="/admin/saved">COLLECTION</a></li>
-
+        <li><a href="/post">POST ART</a></li>
         <form action="/logout" method="post">
           <button type="submit" id="logoutButton">LOGOUT</button>
         </form>

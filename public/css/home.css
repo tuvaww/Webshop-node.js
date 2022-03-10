@@ -55,12 +55,11 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgb(228, 159, 10);
+  background-color: rgb(202, 146, 59);
   top: 35.9%;
   left: 17.4%;
   height: 27.5%;
   width: 66.1%;
-  transform: rotate(-0.1deg);
 }
 
 #feedLink {

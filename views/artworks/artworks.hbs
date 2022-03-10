@@ -3,16 +3,21 @@
     <a href="/artworks/{{_id}}">
       <img src="{{imgUrl}}" alt="{{name}}" />
       {{#if ../loggedInUser}}
-        <form action="/admin/save" method="post">
-          <button type="submit">
-            {{#if isSaved}}
+        {{#if isSaved}}
+          <form action="/admin/saved-delete-item" method="post">
+            <button type="submit">
               <i id="heartIcon" class="bi bi-suit-heart-fill"></i>
-              {{else}}
+            </button>
+            <input type="hidden" name="artId" value="{{_id}}" />
+          </form>
+        {{else}}
+          <form action="/admin/save" method="post">
+            <button type="submit">
               <i id="heartIcon" class="bi bi-suit-heart"></i>
-            {{/if}}
-          </button>
-          <input type="hidden" name="artId" value="{{_id}}" />
-        </form>
+            </button>
+            <input type="hidden" name="artId" value="{{_id}}" />
+          </form>
+        {{/if}}
       {{/if}}
     </a>
   {{/each}}
