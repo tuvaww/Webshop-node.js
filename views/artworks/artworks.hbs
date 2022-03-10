@@ -1,33 +1,19 @@
 <section id="feedSection">
-  {{#if art}}
-    {{#each art}}
-      <a href="/artworks/{{artId._id}}">
-        <img src="{{artId.imgUrl}}" alt="{{artId.name}}" />
-        {{!-- {{#if loggedInUser}} --}}
-        {{!-- <form action="/admin/save" method="post">
-          <button class="btn" type="submit">
-            <i id="heartIcon" class="bi bi-suit-heart"></i>
-          </button>
-          <input type="hidden" name="artId" value="{{_id}}" />
-        </form> --}}
-        {{!-- {{/if}} --}}
-      </a>
-    {{/each}}
-
-  {{else}}
-
-    {{#each artworks}}
-      <a href="/artworks/{{_id}}">
-        <img src="{{imgUrl}}" alt="{{name}}" />
-        {{!-- {{#if loggedInUser}} --}}
+  {{#each artworks}}
+    <a href="/artworks/{{_id}}">
+      <img src="{{imgUrl}}" alt="{{name}}" />
+      {{#if ../loggedInUser}}
         <form action="/admin/save" method="post">
-          <button class="btn" type="submit">
-            <i id="heartIcon" class="bi bi-suit-heart"></i>
+          <button type="submit">
+            {{#if isSaved}}
+              <i id="heartIcon" class="bi bi-suit-heart-fill"></i>
+              {{else}}
+              <i id="heartIcon" class="bi bi-suit-heart"></i>
+            {{/if}}
           </button>
           <input type="hidden" name="artId" value="{{_id}}" />
         </form>
-        {{!-- {{/if}} --}}
-      </a>
-    {{/each}}
-  {{/if}}
+      {{/if}}
+    </a>
+  {{/each}}
 </section>

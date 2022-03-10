@@ -9,11 +9,13 @@ router.get("/saved", isAuth.authUserPages, async (req, res) => {
   req.user
     .populate("savedFavorite.items.artId")
     .then((user) => {
-      const art = user.savedFavorite.items;
+      const artworks = user.savedFavorite.items.map((item) => item.artId);
 
-      res.render("artworks/artworks", {
-        art: art,
+      artworks.forEach((item) => {
+        item.isSaved = true;
       });
+
+      res.render("artworks/artworks", { artworks });
     })
     .catch((err) => console.log(err));
 });
