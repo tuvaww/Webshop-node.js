@@ -12,16 +12,16 @@
   width: 25%;
   height: 500px;
   background-color: midnightblue;
-}
-
-#introSection h2 {
+  color: white;
   font-style: italic;
 }
 
-#introSection h2,
-#aboutText {
-  color: white;
+#introSection h2 {
   padding: 1.2em;
+}
+
+#aboutText {
+  padding: 0 2em;
 }
 
 #featuredSection {
