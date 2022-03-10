@@ -10,15 +10,13 @@ const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
 const Handlebars = require("handlebars");
 
-const {
-  allowInsecurePrototypeAccess,
-} = require("@handlebars/allow-prototype-access");
+const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-access");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const studioRoutes = require("./routes/studio");
 const errorRoutes = require("./routes/error");
 const crudRoutes = require("./routes/crud");
-
+const profileRoutes = require("./routes/profile.js");
 const UserModel = require("./models/Usermodel");
 
 const store = new MongoDbStore({
@@ -77,6 +75,7 @@ app.use("/admin", adminRoutes);
 app.use(studioRoutes);
 app.use(authRoutes);
 app.use(crudRoutes);
+app.use(profileRoutes);
 app.use(errorRoutes.get404);
 
 mongoose
