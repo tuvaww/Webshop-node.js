@@ -1,14 +1,21 @@
 const express = require("express");
 const router = express.Router();
+const UserModel = require("../models/Usermodel");
 const ArtworkModel = require("../models/Artworkmodel.js");
-const middlewares = require("../middleware/is-auth");
 
-router.get("/profile", middlewares.authUserPages, async (req, res) => {
-  const user = req.user.username;
-  const id = req.user._id;
-  const art = await ArtworkModel.find({ id }).lean();
+router.get("/users/:id", async (req, res) => {
+  console.log(req.params.id);
 
-  res.render("auth/profile", { artworks: art, user, id });
+  const user = await UserModel.findById(req.params.id);
+  console.log(user);
+  const userId = req.user._id;
+  const artworks = await ArtworkModel.find({ user }).populate("user").lean();
+
+  res.render("artworks/artworks", {
+    artworks,
+    user,
+    profilePage: true,
+  });
 });
 
 module.exports = router;

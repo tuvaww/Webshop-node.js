@@ -10,7 +10,9 @@ const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
 const Handlebars = require("handlebars");
 
-const { allowInsecurePrototypeAccess } = require("@handlebars/allow-prototype-access");
+const {
+  allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
 const studioRoutes = require("./routes/studio");

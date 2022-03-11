@@ -1,3 +1,7 @@
+{{#if profilePage}}
+<h3>{{user.username}}'s posts</h3>
+{{/if}}
+
 <section id="feedSection">
   {{#each artworks}}
     <a href="/artworks/{{_id}}">
