@@ -42,3 +42,15 @@
 #heartIcon:hover {
   cursor: pointer;
 }
+
+#profile {
+  width: 80%;
+  margin: 0 auto 15px;
+}
+
+#profile p {
+  font-size: large;
+  font-style: italic;
+  border: 1px solid black;
+  width: fit-content;
+}

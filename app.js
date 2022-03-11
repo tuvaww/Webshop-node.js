@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.user) {
-    // console.log(req.user, "hej");
+    res.locals.user = req.user._id;
     res.locals.loggedInUser = req.session.isLoggedIn = true;
   }
   next();
