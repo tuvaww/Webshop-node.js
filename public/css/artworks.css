@@ -6,19 +6,26 @@
 }
 
 #feedSection a {
-  padding: 5px;
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 25%;
+  height: 25vh;
+  background-color: rgb(245, 245, 245);
+  border: 10px solid white;
 }
 
 #feedSection a img {
-  height: 250px;
+  height: 19vh;
+  margin: auto;
 }
 
 #feedSection form {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  padding: 0.7em;
+  right: -10px;
+  bottom: -10px;
 }
 
 #feedSection form button {
@@ -28,7 +35,7 @@
 
 #heartIcon {
   font-size: 15pt;
-  color: white;
+  color: lightpink;
   background-color: transparent;
 }
 
