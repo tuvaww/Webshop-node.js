@@ -23,7 +23,7 @@ router.get(
       req.session.user = alreadyAUser;
       res.redirect("/");
       return req.session.save((err) => {
-        // console.log(err);
+        console.log(err);
       });
     } else {
       // console.log("user finns inte");
@@ -37,7 +37,7 @@ router.get(
       req.session.user = newGitUser;
       res.redirect("/");
       return req.session.save((err) => {
-        // console.log(err);
+        console.log(err);
       });
     }
   }
@@ -74,7 +74,7 @@ router.post("/register", async (req, res) => {
         res.redirect("/login");
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
   }
 });
@@ -102,7 +102,7 @@ router.post("/login", async (req, res) => {
     /* req.session.isLoggedIn = true; */
     req.session.user = user;
     return req.session.save((err) => {
-      // console.log(err);
+      console.log(err);
       res.redirect("/");
     });
   }
@@ -113,7 +113,7 @@ router.post("/login", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.destroy((err) => {
-    // console.log(err);
+    console.log(err);
     res.redirect("/");
   });
 });

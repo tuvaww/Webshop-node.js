@@ -8,7 +8,6 @@ router.get("/", async (req, res) => {
 
   if (req.user) {
     const user = req.user._id;
-    console.log(req.user.username);
 
     res.render("home", { artworks, user });
   } else {
