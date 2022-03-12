@@ -1,0 +1,26 @@
+footer {
+  height: 150px;
+  width: 100%;
+  /* background-color: purple; */
+  /* background-color: mediumblue; */
+  /* background-color: mediumvioletred; */
+  background-color: var(--footer-bg-color);
+}
+
+.footerLinks {
+  display: flex;
+  list-style: none;
+  padding: 1.5em;
+}
+
+.footerlinks li {
+}
+
+.footerLinks li a {
+  /* color: limegreen; */
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.5em;
+}
