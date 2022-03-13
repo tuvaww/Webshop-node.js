@@ -44,7 +44,13 @@
         enctype="multipart/form-data"
         id="postForm"
       >
-        <input type="file" name="imageFile" id="artFile" accept="image/*" />
+        <input
+          type="file"
+          name="imageFile"
+          id="artFile"
+          accept="image/*"
+          required
+        />
         <div>
           <label for="artName">Name of the art</label>
           <input type="text" name="name" id="artName" />

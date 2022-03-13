@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const ArtModel = require("../models/Artworkmodel");
-const Usermodel = require("../models/Usermodel");
+const ArtworkModel = require("../models/Artworkmodel");
+const UserModel = require("../models/Usermodel");
 
 const isAuth = require("../middleware/is-auth");
 
@@ -23,7 +23,7 @@ router.get("/saved", isAuth.authUserPages, async (req, res) => {
 router.post("/save", (req, res) => {
   const artId = req.body.artId;
 
-  ArtModel.findById(artId)
+  ArtworkModel.findById(artId)
     .then((art) => {
       return req.user.addToCollection(art);
     })
@@ -35,6 +35,7 @@ router.post("/save", (req, res) => {
 
 router.post("/saved-delete-item", (req, res) => {
   const artId = req.body.artId;
+
   req.user
     .removeFromSaved(artId)
     .then((result) => {

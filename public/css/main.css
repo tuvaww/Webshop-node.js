@@ -18,19 +18,14 @@
 }
 
 :root {
-  /* background-color:orchid */
-  --intro-bg-color: purple;
+  --intro-bg-color: mediumblue;
   --feed-bg-color: hotpink;
-  --footer-bg-color: mediumblue;
+  --footer-bg-color: darkmagenta;
 }
 
 html {
   max-width: 1000px;
   margin: 0 auto;
-}
-
-body {
-  height: 100vh;
 }
 
 section {

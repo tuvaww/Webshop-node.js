@@ -101,15 +101,9 @@ router.get("/delete/:id", middlewares.authUserPages, async (req, res) => {
 });
 
 router.post("/delete/:id", async (req, res) => {
-  const { name, imgUrl, description } = req.body;
+  await ArtworkModel.findByIdAndDelete(req.params.id);
 
-  await ArtworkModel.findByIdAndDelete(req.params.id, {
-    name,
-    imgUrl,
-    description,
-  });
-
-  res.redirect("/");
+  res.redirect("/artworks");
 });
 
 module.exports = router;
