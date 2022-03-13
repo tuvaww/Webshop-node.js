@@ -15,13 +15,13 @@ router.get("/users/:id", async (req, res) => {
     artworks.forEach((item) => {
       item.isSaved = savedFavorites.includes(item._id.toString());
     });
-
-    res.render("artworks/artworks", {
-      artworks,
-      user,
-      profilePage: true,
-    });
   }
+
+  res.render("artworks/artworks", {
+    artworks,
+    user,
+    profilePage: true,
+  });
 });
 
 module.exports = router;
