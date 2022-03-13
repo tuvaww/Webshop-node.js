@@ -12,13 +12,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   const artworks = await ArtworkModel.find().limit(3).lean();
 
-  if (req.user) {
-    const user = req.user._id;
-
-    res.render("home", { artworks, user });
-  } else {
-    res.render("home", { artworks });
-  }
+  res.render("home", { artworks });
 });
 
 // READ - ARTWORKS FEED
