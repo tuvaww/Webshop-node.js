@@ -8,7 +8,10 @@
   {{#if myPosts}}
     <div id="posterLinks">
       <a href="/artworks/{{artwork._id}}/edit">Edit</a>
-      <a href="/delete/{{artwork._id}}">Delete</a>
+      <form id="deleteForm" action="/delete/{{artwork._id}}" method="post">
+        <button type="submit">Delete</button>
+        <input type="hidden" name="artId" value="{{artwork._id}}" />
+      </form>
     </div>
   {{/if}}
 </section>

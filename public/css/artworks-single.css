@@ -34,3 +34,21 @@ p {
   text-align: center;
   outline: 1px solid black;
 }
+
+#deleteForm {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  outline: 1px solid black;
+}
+
+#deleteForm button {
+  text-align: center;
+  background-color: white;
+  border: 0;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}

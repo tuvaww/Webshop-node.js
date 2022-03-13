@@ -94,12 +94,6 @@ router.post("/artworks/:id/edit", async (req, res) => {
 
 // DELETE - DELETE ARTWORK
 
-router.get("/delete/:id", middlewares.authUserPages, async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id);
-
-  res.render("artworks/artworks-delete", artwork);
-});
-
 router.post("/delete/:id", async (req, res) => {
   await ArtworkModel.findByIdAndDelete(req.params.id);
 
