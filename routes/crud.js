@@ -1,5 +1,6 @@
 const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
+const UserModel = require("../models/Usermodel");
 const utils = require("../utils");
 const middlewares = require("../middleware/is-auth");
 const path = require("path");
@@ -104,6 +105,15 @@ router.post("/artworks/:id/edit", async (req, res) => {
 
 router.post("/delete/:id", async (req, res) => {
   await ArtworkModel.findByIdAndDelete(req.params.id);
+
+  const artId = req.params.id;
+  console.log("artid", artId);
+
+  const users = await UserModel.updateMany(
+    {},
+    { $pull: { "savedFavorite.items": { artId } } },
+    { multi: true }
+  );
 
   res.redirect("/artworks");
 });

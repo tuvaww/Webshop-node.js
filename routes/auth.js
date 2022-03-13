@@ -6,6 +6,7 @@ const router = express.Router();
 const passport = require("passport");
 const githubPassport = require("../oAuth/github");
 const UserModel = require("../models/Usermodel");
+const registerLogg = require("../middleware/is-auth");
 
 router.get("/auth/github", passport.authenticate("github"));
 
@@ -13,12 +14,8 @@ router.get(
   "/auth/github/callback",
   passport.authenticate("github", { failureRedirect: "/login" }),
   async function (req, res) {
-    // Successful authentication, redirect home.
-
     const alreadyAUser = await UserModel.findOne({ id: req.user.id });
-    // console.log("already a user", alreadyAUser);
     if (alreadyAUser) {
-      // console.log("use finns");
       req.session.isLoggedIn = true;
       req.session.user = alreadyAUser;
       res.redirect("/");
@@ -26,13 +23,11 @@ router.get(
         console.log(err);
       });
     } else {
-      // console.log("user finns inte");
       const newGitUser = await UserModel.create({
         username: req.user.username,
         password: "noAccess",
         id: req.user.id,
       });
-      // console.log("new git user", newGitUser);
       req.session.isLoggedIn = true;
       req.session.user = newGitUser;
       res.redirect("/");
@@ -43,11 +38,8 @@ router.get(
   }
 );
 
-router.get("/register", (req, res) => {
-  res.render("auth/register", {
-    /*     loggedInUser: false,
-     */
-  });
+router.get("/register", registerLogg.registerHide, (req, res) => {
+  res.render("auth/register", {});
 });
 
 router.post("/register", async (req, res) => {
@@ -80,11 +72,7 @@ router.post("/register", async (req, res) => {
 });
 
 router.get("/login", async (req, res) => {
-  res.render(
-    "auth/login" /* , {
-    loggedInUser: false,
-  } */
-  );
+  res.render("auth/login");
 });
 
 router.post("/login", async (req, res) => {
@@ -99,7 +87,6 @@ router.post("/login", async (req, res) => {
   }
   const compares = await bcrypt.compare(password, user.password);
   if (compares) {
-    /* req.session.isLoggedIn = true; */
     req.session.user = user;
     return req.session.save((err) => {
       console.log(err);
