@@ -1,9 +1,9 @@
 <section id="feedSection">
   {{#if profilePage}}
-  <div id="profile">
-    <p>{{user.username}}'s posts</p>
-  </div>
-{{/if}}
+    <div id="profile">
+      <p>{{user.username}}'s posts</p>
+    </div>
+  {{/if}}
   {{#if artworks}}
     {{#each artworks}}
       <a href="/artworks/{{_id}}">
