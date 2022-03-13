@@ -39,7 +39,7 @@
             <i class="bi bi-exclamation-circle error"></i>
           {{/if}}
         </label>
-        <input type="text" name="name" id="artName" value="{{artwork.name}}" />
+        <input type="text" name="name" id="artName" value="{{nameInput}}{{artwork.name}}" />
       </div>
       <div>
         <label for="artDescription">
@@ -52,7 +52,7 @@
           name="description"
           id="artDescription"
           rows="5"
-        >{{artwork.description}}</textarea>
+        >{{descriptionInput}}{{artwork.description}}</textarea>
       </div>
       <div>
         {{#if post}}

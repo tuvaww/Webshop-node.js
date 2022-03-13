@@ -98,6 +98,9 @@ router.post("/post", async (req, res) => {
     res.render("artworks/artworks-post-edit", {
       post: true,
       error: true,
+      fileInput: req.files.imageFile,
+      nameInput: req.body.name,
+      descriptionInput: req.body.description,
     });
   }
 });
