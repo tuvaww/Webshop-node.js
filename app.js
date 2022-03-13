@@ -1,5 +1,7 @@
+// DOTENV SETUP
 require("dotenv").config();
 
+// MODULES
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -9,15 +11,14 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const MongoDbStore = require("connect-mongodb-session")(session);
 const Handlebars = require("handlebars");
-
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
+
 const authRoutes = require("./routes/auth");
 const adminRoutes = require("./routes/admin");
-const studioRoutes = require("./routes/studio");
+const artworksRoutes = require("./routes/artworks");
 const errorRoutes = require("./routes/error");
-const crudRoutes = require("./routes/crud");
 const profileRoutes = require("./routes/profile.js");
 const UserModel = require("./models/Usermodel");
 
@@ -25,6 +26,8 @@ const store = new MongoDbStore({
   uri: process.env.MONGOOSE,
   collection: "sessions",
 });
+
+// APP SETUP
 
 app.engine(
   "hbs",
@@ -34,13 +37,12 @@ app.engine(
     handlebars: allowInsecurePrototypeAccess(Handlebars),
   })
 );
-app.set("view engine", "hbs");
 
+app.set("view engine", "hbs");
 app.use(express.static("public"));
 app.use(fileUpload());
 app.use(passport.initialize());
 app.use(passport.session());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -73,13 +75,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// ROUTES
 app.use("/admin", adminRoutes);
-app.use(studioRoutes);
+app.use(artworksRoutes);
 app.use(authRoutes);
-app.use(crudRoutes);
 app.use(profileRoutes);
 app.use(errorRoutes.get404);
 
+//SERVER
 mongoose
   .connect(process.env.MONGOOSE)
   .then((result) => {
