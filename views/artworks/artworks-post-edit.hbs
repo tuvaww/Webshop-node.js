@@ -1,49 +1,29 @@
 <div id="postWrapper">
   <section id="imageSection">
-    {{#if myPosts}}
-      <img id="artFileImage" src="{{artwork.imgUrl}}" alt="Your uploaded art" />
-    {{else}}
+    {{#if post}}
       <img id="artFileImage" src="#" alt="Your uploaded art" />
+    {{else}}
+      <img id="artFileImage" src="{{artwork.imgUrl}}" alt="Your uploaded art" />
     {{/if}}
   </section>
+
   <section id="postSection">
-    {{#if myPosts}}
-      <p>Edit your post</p>
-      <form
-        action="/artworks/{{artwork._id}}/edit"
-        method="post"
-        enctype="multipart/form-data"
-        id="postForm"
-      >
-        <div>
-          <label for="artName">Name of the art</label>
-          <input
-            type="text"
-            name="name"
-            id="artName"
-            value="{{artwork.name}}"
-          />
-        </div>
-        <div>
-          <label for="artDescription">Description</label>
-          <textarea
-            name="description"
-            id="artDescription"
-            rows="5"
-          >{{artwork.description}}</textarea>
-        </div>
-        <div>
-          <input type="submit" value="Save" />
-        </div>
-      </form>
-    {{else}}
+    {{#if post}}
       <p>Post your own art</p>
-      <form
+    {{else}}
+      <p>Edit your post</p>
+    {{/if}}
+    <form
+      {{#if post}}
         action="/post"
-        method="post"
-        enctype="multipart/form-data"
-        id="postForm"
-      >
+      {{else}}
+        action="/artworks/{{artwork._id}}/edit"
+      {{/if}}
+      method="post"
+      enctype="multipart/form-data"
+      id="postForm"
+    >
+      {{#if post}}
         <input
           type="file"
           name="imageFile"
@@ -51,21 +31,36 @@
           accept="image/*"
           required
         />
-        <div>
-          <label for="artName">Name of the art</label>
-          <input type="text" name="name" id="artName" />
-        </div>
-        <div>
-          <label for="artDescription">Description</label>
-          <textarea name="description" id="artDescription" rows="5"></textarea>
-        </div>
-        <div>
+      {{/if}}
+      <div>
+        <label for="artName">
+          Name of the art
+          {{#if error}}
+            <i class="bi bi-exclamation-circle error"></i>
+          {{/if}}
+        </label>
+        <input type="text" name="name" id="artName" value="{{artwork.name}}" />
+      </div>
+      <div>
+        <label for="artDescription">
+          Description
+          {{#if error}}
+            <i class="bi bi-exclamation-circle error"></i>
+          {{/if}}
+        </label>
+        <textarea
+          name="description"
+          id="artDescription"
+          rows="5"
+        >{{artwork.description}}</textarea>
+      </div>
+      <div>
+        {{#if post}}
           <input type="submit" value="Post" />
-        </div>
-      </form>
-    {{/if}}
-    {{#if error}}
-      <p>{{error}}</p>
-    {{/if}}
+        {{else}}
+          <input type="submit" value="Save" />
+        {{/if}}
+      </div>
+    </form>
   </section>
 </div>

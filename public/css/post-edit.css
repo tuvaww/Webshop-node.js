@@ -50,3 +50,8 @@
   margin-top: 1em;
   padding: 1em;
 }
+
+.error {
+  color: red;
+  font-size: 10pt;
+}

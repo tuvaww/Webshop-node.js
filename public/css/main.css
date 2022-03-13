@@ -6,7 +6,7 @@
 @import url(./auth.css);
 @import url(./artworks-single.css);
 @import url(./artworks.css);
-@import url(./post.css);
+@import url(./post-edit.css);
 
 /* GLOBAL STYLING */
 
@@ -18,9 +18,9 @@
 }
 
 :root {
-  --intro-bg-color: mediumblue;
+  --intro-bg-color: darkmagenta;
   --feed-bg-color: hotpink;
-  --footer-bg-color: darkmagenta;
+  --footer-bg-color: #3737e6;
 }
 
 html {

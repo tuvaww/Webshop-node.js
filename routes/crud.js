@@ -7,7 +7,7 @@ const router = express.Router();
 
 // CREATE - POST ARTWORK
 router.get("/post", middlewares.authUserPages, (req, res) => {
-  res.render("artworks/artworks-post-edit");
+  res.render("artworks/artworks-post-edit", { post: true });
 });
 
 router.post("/post", async (req, res) => {
@@ -32,7 +32,8 @@ router.post("/post", async (req, res) => {
     res.redirect("/artworks/" + result._id);
   } else {
     res.render("artworks/artworks-post-edit", {
-      error: "Something went wrong",
+      post: true,
+      error: true,
     });
   }
 });
@@ -74,22 +75,29 @@ router.get("/artworks/:id/edit", async (req, res) => {
   const postedBy = artwork.user._id.toString();
 
   if (loggedUser === postedBy) {
-    res.render("artworks/artworks-post-edit", {
-      artwork,
-      myPosts: true,
-    });
+    res.render("artworks/artworks-post-edit", { artwork });
   }
 });
 
 router.post("/artworks/:id/edit", async (req, res) => {
+  const artwork = await ArtworkModel.findById(req.params.id);
   const { name, description } = req.body;
 
-  await ArtworkModel.findByIdAndUpdate(req.params.id, {
-    name,
-    description,
-  });
+  const editedArt = {
+    name: req.body.name,
+    description: req.body.description,
+  };
 
-  res.redirect("/artworks/" + req.params.id);
+  if (utils.validateArtwork(editedArt)) {
+    await ArtworkModel.findByIdAndUpdate(req.params.id, { name, description });
+
+    res.redirect("/artworks/" + req.params.id);
+  } else {
+    res.render("artworks/artworks-post-edit", {
+      artwork,
+      error: true,
+    });
+  }
 });
 
 // DELETE - DELETE ARTWORK

@@ -3,8 +3,6 @@ function validateArtwork(artwork) {
 
   valid = valid && artwork.name;
   valid = valid && artwork.name.length > 0;
-  valid = valid && artwork.imgUrl;
-  valid = valid && artwork.imgUrl.length > 0;
   valid = valid && artwork.description;
   valid = valid && artwork.description.length > 0;
 
