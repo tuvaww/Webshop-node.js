@@ -1,5 +1,14 @@
 <section class="authSection">
   <p>Login</p>
+  {{#if userNotFound}}
+    <h4>{{userNotFound}}</h4>
+  {{/if}}
+  {{#if wrongData}}
+    <h4>{{wrongData}}</h4>
+  {{/if}}
+  {{#if accessUserPages}}
+    <h4>{{accessUserPages}}</h4>
+  {{/if}}
   <form action="/login" method="post" class="authForm">
     <div>
       <label for="loginUsername">Username</label>
@@ -18,14 +27,4 @@
       <i class="bi bi-github"></i>
     </a>
   </p>
-  {{#if userNotFound}}
-    <h4>{{userNotFound}}</h4>
-  {{/if}}
-  {{#if wrongData}}
-    <h4>{{wrongData}}</h4>
-  {{/if}}
-
-  {{#if accessUserPages}}
-    <h4>{{accessUserPages}}</h4>
-  {{/if}}
 </section>

@@ -39,7 +39,7 @@ router.get(
 );
 
 router.get("/register", registerLogg.registerHide, (req, res) => {
-  res.render("auth/register", {});
+  res.render("auth/register");
 });
 
 router.post("/register", async (req, res) => {
@@ -47,12 +47,12 @@ router.post("/register", async (req, res) => {
 
   const userDoc = await UserModel.findOne({ username });
   if (userDoc) {
-    return res.render("register", {
-      alreadyInUse: "Username already in use",
+    return res.render("auth/register", {
+      alreadyInUse: "Username already taken",
     });
   } else if (password !== confirmPassword) {
-    return res.render("register", {
-      comparePasswords: "Passwords do not match",
+    return res.render("auth/register", {
+      comparePasswords: "Password doesn't match",
     });
   } else {
     return bcrypt
@@ -82,7 +82,7 @@ router.post("/login", async (req, res) => {
 
   if (!user) {
     return res.render("auth/login", {
-      userNotFound: "User not found!",
+      userNotFound: "User not found",
     });
   }
   const compares = await bcrypt.compare(password, user.password);
@@ -94,7 +94,7 @@ router.post("/login", async (req, res) => {
     });
   }
   res.render("auth/login", {
-    wrongData: "Wrong entered data",
+    wrongData: "Incorrect password",
   });
 });
 
