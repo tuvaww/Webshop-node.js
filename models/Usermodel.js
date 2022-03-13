@@ -16,9 +16,6 @@ const userSchema = new Schema({
       },
     ],
   },
-  /*  myArt: {
-    myItem: [{}]
-  } */
 });
 
 userSchema.methods.addToCollection = function (art) {

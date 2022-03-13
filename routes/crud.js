@@ -7,7 +7,7 @@ const router = express.Router();
 
 // CREATE - POST ARTWORK
 router.get("/post", middlewares.authUserPages, (req, res) => {
-  res.render("crud/create");
+  res.render("artworks/artworks-post-edit");
 });
 
 router.post("/post", async (req, res) => {
@@ -31,7 +31,9 @@ router.post("/post", async (req, res) => {
     const result = await newArtwork.save();
     res.redirect("/artworks/" + result._id);
   } else {
-    res.render("crud/create", { error: "Please fill in all fields" });
+    res.render("artworks/artworks-post-edit", {
+      error: "Something went wrong",
+    });
   }
 });
 
@@ -41,58 +43,61 @@ router.get("/artworks/:id", async (req, res) => {
     .populate("user")
     .lean();
 
-  const loggedUser = req.user._id.toString();
-  const postedBy = artwork.user._id.toString();
+  if (req.user) {
+    const loggedUser = req.user._id.toString();
+    const postedBy = artwork.user._id.toString();
 
-  if (loggedUser === postedBy) {
-    return res.render("artworks/artworks-single", {
-      artwork,
-      myPosts: true,
-    });
+    if (loggedUser === postedBy) {
+      return res.render("artworks/artworks-single", {
+        artwork,
+        myPosts: true,
+      });
+    } else {
+      return res.render("artworks/artworks-single", {
+        artwork,
+        myPosts: false,
+      });
+    }
   } else {
-    return res.render("artworks/artworks-single", {
+    res.render("artworks/artworks-single", {
       artwork,
-      myPosts: false,
     });
   }
 });
 
 // UPDATE - EDIT ARTWORK
 
-router.get("/update/:id", middlewares.authUserPages, async (req, res) => {
+router.get("/artworks/:id/edit", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id);
 
-  res.render("crud/update", artwork);
+  const loggedUser = req.user._id.toString();
+  const postedBy = artwork.user._id.toString();
+
+  if (loggedUser === postedBy) {
+    res.render("artworks/artworks-post-edit", {
+      artwork,
+      myPosts: true,
+    });
+  }
 });
 
-router.post("/update/:id/edit", async (req, res) => {
-  const { name, imgUrl, description } = req.body;
+router.post("/artworks/:id/edit", async (req, res) => {
+  const { name, description } = req.body;
 
   await ArtworkModel.findByIdAndUpdate(req.params.id, {
     name,
-    imgUrl,
     description,
   });
 
-  res.redirect("/");
+  res.redirect("/artworks/" + req.params.id);
 });
 
-router.get("/delete/:id", middlewares.authUserPages, async (req, res) => {
-  const artwork = await ArtworkModel.findById(req.params.id);
-
-  res.render("artworks/artworks-delete", artwork);
-});
+// DELETE - DELETE ARTWORK
 
 router.post("/delete/:id", async (req, res) => {
-  const { name, imgUrl, description } = req.body;
+  await ArtworkModel.findByIdAndDelete(req.params.id);
 
-  await ArtworkModel.findByIdAndDelete(req.params.id, {
-    name,
-    imgUrl,
-    description,
-  });
-
-  res.redirect("/");
+  res.redirect("/artworks");
 });
 
 module.exports = router;

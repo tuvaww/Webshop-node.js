@@ -18,7 +18,7 @@ const adminRoutes = require("./routes/admin");
 const studioRoutes = require("./routes/studio");
 const errorRoutes = require("./routes/error");
 const crudRoutes = require("./routes/crud");
-
+const profileRoutes = require("./routes/profile.js");
 const UserModel = require("./models/Usermodel");
 
 const store = new MongoDbStore({
@@ -67,7 +67,7 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.user) {
-    // console.log(req.user, "hej");
+    res.locals.user = req.user._id;
     res.locals.loggedInUser = req.session.isLoggedIn = true;
   }
   next();
@@ -77,6 +77,7 @@ app.use("/admin", adminRoutes);
 app.use(studioRoutes);
 app.use(authRoutes);
 app.use(crudRoutes);
+app.use(profileRoutes);
 app.use(errorRoutes.get404);
 
 mongoose

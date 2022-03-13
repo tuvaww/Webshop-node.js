@@ -1,6 +1,7 @@
 /* IMPORTS */
 
 @import url(./header.css);
+@import url(./footer.css);
 @import url(./home.css);
 @import url(./auth.css);
 @import url(./artworks-single.css);
@@ -14,4 +15,19 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --intro-bg-color: mediumblue;
+  --feed-bg-color: hotpink;
+  --footer-bg-color: darkmagenta;
+}
+
+html {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+section {
+  margin-bottom: 100px !important;
 }

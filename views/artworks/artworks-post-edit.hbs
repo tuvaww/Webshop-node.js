@@ -1,0 +1,71 @@
+<div id="postWrapper">
+  <section id="imageSection">
+    {{#if myPosts}}
+      <img id="artFileImage" src="{{artwork.imgUrl}}" alt="Your uploaded art" />
+    {{else}}
+      <img id="artFileImage" src="#" alt="Your uploaded art" />
+    {{/if}}
+  </section>
+  <section id="postSection">
+    {{#if myPosts}}
+      <p>Edit your post</p>
+      <form
+        action="/artworks/{{artwork._id}}/edit"
+        method="post"
+        enctype="multipart/form-data"
+        id="postForm"
+      >
+        <div>
+          <label for="artName">Name of the art</label>
+          <input
+            type="text"
+            name="name"
+            id="artName"
+            value="{{artwork.name}}"
+          />
+        </div>
+        <div>
+          <label for="artDescription">Description</label>
+          <textarea
+            name="description"
+            id="artDescription"
+            rows="5"
+          >{{artwork.description}}</textarea>
+        </div>
+        <div>
+          <input type="submit" value="Save" />
+        </div>
+      </form>
+    {{else}}
+      <p>Post your own art</p>
+      <form
+        action="/post"
+        method="post"
+        enctype="multipart/form-data"
+        id="postForm"
+      >
+        <input
+          type="file"
+          name="imageFile"
+          id="artFile"
+          accept="image/*"
+          required
+        />
+        <div>
+          <label for="artName">Name of the art</label>
+          <input type="text" name="name" id="artName" />
+        </div>
+        <div>
+          <label for="artDescription">Description</label>
+          <textarea name="description" id="artDescription" rows="5"></textarea>
+        </div>
+        <div>
+          <input type="submit" value="Post" />
+        </div>
+      </form>
+    {{/if}}
+    {{#if error}}
+      <p>{{error}}</p>
+    {{/if}}
+  </section>
+</div>

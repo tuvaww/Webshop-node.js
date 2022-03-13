@@ -11,22 +11,24 @@
   align-items: center;
   width: 25%;
   height: 500px;
-  background-color: midnightblue;
+  background-color: var(--intro-bg-color);
+  color: white;
+  font-style: italic;
+  margin-bottom: 0 !important;
 }
 
 #introSection h2 {
-  font-style: italic;
+  padding: 1.2em;
 }
 
-#introSection h2,
-#aboutText {
-  color: white;
-  padding: 1.2em;
+#introSection p {
+  padding: 0 2em;
 }
 
 #featuredSection {
   width: 75%;
   height: 500px;
+  margin-bottom: 0 !important;
 }
 
 #featuredArtList {
@@ -55,12 +57,11 @@
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgb(228, 159, 10);
+  background-color: rgb(202, 146, 59);
   top: 35.9%;
   left: 17.4%;
   height: 27.5%;
   width: 66.1%;
-  transform: rotate(-0.1deg);
 }
 
 #feedLink {
@@ -68,7 +69,7 @@
   display: flex;
   align-items: center;
   height: 50px;
-  background-color: palevioletred;
+  background-color: var(--feed-bg-color);
 }
 
 #feedLink a {

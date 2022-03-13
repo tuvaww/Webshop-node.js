@@ -52,7 +52,7 @@ nav {
 .navLinks li a:hover,
 #logoutButton:hover {
   text-decoration: none;
-  color: palevioletred;
+  color: hotpink;
   font-style: italic;
   cursor: pointer;
 }
