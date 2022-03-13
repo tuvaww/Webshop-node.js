@@ -1,7 +1,9 @@
 // DOTENV SETUP
+
 require("dotenv").config();
 
 // MODULES
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
@@ -69,13 +71,14 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.user) {
-    res.locals.user = req.user._id;
+    res.locals.currentUser = req.user._id;
     res.locals.loggedInUser = req.session.isLoggedIn = true;
   }
   next();
 });
 
 // ROUTES
+
 app.use("/admin", adminRoutes);
 app.use(artworksRoutes);
 app.use(authRoutes);
@@ -83,6 +86,7 @@ app.use(profileRoutes);
 app.use(errorRoutes.get404);
 
 //SERVER
+
 mongoose
   .connect(process.env.MONGOOSE)
   .then((result) => {

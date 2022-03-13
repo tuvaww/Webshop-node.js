@@ -54,3 +54,8 @@
   border: 1px solid black;
   width: fit-content;
 }
+
+#emptyFeed {
+  margin: auto;
+  font-size: large;
+}

@@ -12,6 +12,7 @@
 }
 
 #singleSection img {
+  max-width: 400px;
   padding: 1em;
   outline: 1px solid black;
 }

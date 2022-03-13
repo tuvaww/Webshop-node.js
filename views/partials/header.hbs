@@ -8,7 +8,7 @@
       {{#if loggedInUser}}
         <li><a href="/admin/saved">COLLECTION</a></li>
         <li><a href="/post">POST</a></li>
-        <li><a href="/users/{{user}}">PROFILE</a></li>
+        <li><a href="/users/{{currentUser}}">PROFILE</a></li>
         <form action="/logout" method="post">
           <button type="submit" id="logoutButton">LOGOUT</button>
         </form>
