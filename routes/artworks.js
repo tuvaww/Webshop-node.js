@@ -1,4 +1,5 @@
 // MODULES
+
 const express = require("express");
 const ArtworkModel = require("../models/Artworkmodel");
 const UserModel = require("../models/Usermodel");
@@ -7,9 +8,11 @@ const middlewares = require("../middleware/is-auth");
 const path = require("path");
 
 // ROUTER SETUP
+
 const router = express.Router();
 
 // HOME PAGE
+
 router.get("/", async (req, res) => {
   const artworks = await ArtworkModel.find().limit(3).lean();
 
@@ -17,6 +20,7 @@ router.get("/", async (req, res) => {
 });
 
 // READ - ARTWORKS FEED
+
 router.get("/artworks", async (req, res) => {
   const artworks = await ArtworkModel.find().lean();
 
@@ -36,6 +40,7 @@ router.get("/artworks", async (req, res) => {
 });
 
 // READ - SINGLE ARTWORK
+
 router.get("/artworks/:id", async (req, res) => {
   const artwork = await ArtworkModel.findById(req.params.id)
     .populate("user")
@@ -64,6 +69,7 @@ router.get("/artworks/:id", async (req, res) => {
 });
 
 // CREATE - POST ARTWORK
+
 router.get("/post", middlewares.authUserPages, (req, res) => {
   res.render("artworks/artworks-post-edit", { post: true });
 });
@@ -131,21 +137,6 @@ router.post("/artworks/:id/edit", async (req, res) => {
 });
 
 // DELETE - DELETE ARTWORK
-
-router.post("/delete/:id", async (req, res) => {
-  await ArtworkModel.findByIdAndDelete(req.params.id);
-
-  const artId = req.params.id;
-  console.log("artid", artId);
-
-  const users = await UserModel.updateMany(
-    {},
-    { $pull: { "savedFavorite.items": { artId } } },
-    { multi: true }
-  );
-
-  res.redirect("/artworks");
-});
 
 router.post("/delete/:id", async (req, res) => {
   await ArtworkModel.findByIdAndDelete(req.params.id);
