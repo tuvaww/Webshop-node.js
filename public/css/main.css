@@ -37,3 +37,8 @@ body {
 section {
   margin-bottom: 100px !important;
 }
+
+.error {
+  margin: auto;
+  font-size: large;
+}

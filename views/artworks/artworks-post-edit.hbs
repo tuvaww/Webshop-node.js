@@ -36,7 +36,7 @@
         <label for="artName">
           Name of the art
           {{#if error}}
-            <i class="bi bi-exclamation-circle error"></i>
+            <i class="bi bi-exclamation-circle inputError"></i>
           {{/if}}
         </label>
         <input type="text" name="name" id="artName" value="{{nameInput}}{{artwork.name}}" />
@@ -45,7 +45,7 @@
         <label for="artDescription">
           Description
           {{#if error}}
-            <i class="bi bi-exclamation-circle error"></i>
+            <i class="bi bi-exclamation-circle inputError"></i>
           {{/if}}
         </label>
         <textarea
