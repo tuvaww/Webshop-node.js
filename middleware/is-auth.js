@@ -7,3 +7,9 @@ exports.authUserPages = (req, res, next) => {
 
   next();
 };
+
+exports.registerHide = (req, res, next) => {
+  if (req.user) {
+    return res.redirect("/");
+  }
+};
