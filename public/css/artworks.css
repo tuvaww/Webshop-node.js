@@ -1,0 +1,56 @@
+#feedSection {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#feedSection a {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 25%;
+  height: 25vh;
+  background-color: rgb(245, 245, 245);
+  border: 10px solid white;
+}
+
+#feedSection a img {
+  height: 19vh;
+  margin: auto;
+}
+
+#feedSection form {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+}
+
+#feedSection form button {
+  background-color: transparent;
+  border: 0;
+}
+
+#heartIcon {
+  font-size: 15pt;
+  color: lightcoral;
+  background-color: transparent;
+}
+
+#heartIcon:hover {
+  cursor: pointer;
+}
+
+#profile {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+#profile p {
+  font-size: large;
+  font-style: italic;
+  border: 1px solid black;
+  width: fit-content;
+}

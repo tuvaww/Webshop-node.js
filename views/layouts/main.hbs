@@ -2,28 +2,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Webshop node | Adam &amp; Tuva-Li &amp; Emma</title>
-    <link rel="stylesheet" href="./css/main.css" />
+    <title>Digital Art Gallery | Adam &amp; Tuva-Li &amp; Emma</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   </head>
   <body>
-    <nav class="navContainer">
-      <section class="directLinks">
-        <a href="/">HOME</a>
-        <a href="/products">PRODUCTS</a>
-
-      </section>
-
-      <section class="logLinks">
-        <a href="/register">SIGNUP</a>
-        <a href="/login">LOGIN</a>
-        <form action="/logout" method="post">
-          <button type="submit">LOGOUT</button>
-        </form>
-
-      </section>
-    </nav>
+  
+    {{>header}}
 
     {{{body}}}
+
+    {{>footer}}
+
+  <script src="./js/main.js"></script>
   </body>
 </html>

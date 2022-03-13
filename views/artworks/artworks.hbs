@@ -1,0 +1,33 @@
+<section id="feedSection">
+  {{#if profilePage}}
+    <div id="profile">
+      <p>{{user.username}}'s posts</p>
+    </div>
+  {{/if}}
+  {{#if artworks}}
+    {{#each artworks}}
+      <a href="/artworks/{{_id}}">
+        <img src="{{imgUrl}}" alt="{{name}}" />
+        {{#if ../loggedInUser}}
+          {{#if isSaved}}
+            <form action="/admin/saved-delete-item" method="post">
+              <button type="submit">
+                <i id="heartIcon" class="bi bi-suit-heart-fill"></i>
+              </button>
+              <input type="hidden" name="artId" value="{{_id}}" />
+            </form>
+          {{else}}
+            <form action="/admin/save" method="post">
+              <button type="submit">
+                <i id="heartIcon" class="bi bi-suit-heart"></i>
+              </button>
+              <input type="hidden" name="artId" value="{{_id}}" />
+            </form>
+          {{/if}}
+        {{/if}}
+      </a>
+    {{/each}}
+  {{else}}
+    <p class="error">There's nothing here!</p>
+  {{/if}}
+</section>

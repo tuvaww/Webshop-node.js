@@ -1,0 +1,30 @@
+<section class="authSection">
+  <p>Login</p>
+  {{#if userNotFound}}
+    <h4>{{userNotFound}}</h4>
+  {{/if}}
+  {{#if wrongData}}
+    <h4>{{wrongData}}</h4>
+  {{/if}}
+  {{#if accessUserPages}}
+    <h4>{{accessUserPages}}</h4>
+  {{/if}}
+  <form action="/login" method="post" class="authForm">
+    <div>
+      <label for="loginUsername">Username</label>
+      <input type="text" name="username" id="loginUsername" />
+    </div>
+    <div>
+      <label for="loginPassword">Password</label>
+      <input type="password" name="password" id="loginPassword" />
+    </div>
+    <div>
+      <input type="submit" value="Login" />
+    </div>
+  </form>
+  <p>Or login with Github:
+    <a href="/auth/github" class="btn btn-default">
+      <i class="bi bi-github"></i>
+    </a>
+  </p>
+</section>

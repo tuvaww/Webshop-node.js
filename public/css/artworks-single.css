@@ -1,0 +1,51 @@
+#singleSection {
+  width: 40%;
+  border: 1px solid black;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#singleSection a {
+  padding: 1em;
+  color: black;
+}
+
+#singleSection img {
+  width: 398px;
+  padding: 1em;
+  outline: 1px solid black;
+}
+
+#artDetails h4,
+p {
+  padding: 0.5em 1em;
+}
+
+#posterLinks {
+  display: flex;
+}
+
+#posterlinks a {
+  width: 100%;
+  text-align: center;
+  outline: 1px solid black;
+}
+
+#deleteForm {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  outline: 1px solid black;
+}
+
+#deleteForm button {
+  text-align: center;
+  background-color: white;
+  border: 0;
+  font-size: 16px;
+  text-decoration: underline;
+  cursor: pointer;
+}

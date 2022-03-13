@@ -1,0 +1,12 @@
+<footer>
+  <ul class="footerLinks">
+    <li><a href="/">Home</a></li>
+    <li><a href="/">About</a></li>
+    <li><a href="/artworks">Art Gallery</a></li>
+    {{#if loggedInUser}}
+      <li><a href="/admin/saved">Your collection</a></li>
+      <li><a href="/post">Post your art</a></li>
+      <li><a href="/users/{{currentUser}}">Your profile</a></li>
+    {{/if}}
+  </ul>
+</footer>

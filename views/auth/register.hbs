@@ -1,0 +1,26 @@
+<section class="authSection">
+  <p>Register</p>
+  {{#if alreadyInUse}}
+    <h4>{{alreadyInUse}}</h4>
+  {{/if}}
+  {{#if comparePasswords}}
+    <h4>{{comparePasswords}}</h4>
+  {{/if}}
+  <form action="/register" method="post" class="authForm">
+    <div>
+      <label for="username">Enter an username:</label>
+      <input type="text" name="username" />
+    </div>
+    <div>
+      <label for="password">Choose a password:</label>
+      <input type="password" name="password" />
+    </div>
+    <div>
+      <label for="confirmPassword">Confirm password:</label>
+      <input type="password" name="confirmPassword" />
+    </div>
+    <div>
+      <input type="submit" value="Register" />
+    </div>
+  </form>
+</section>
